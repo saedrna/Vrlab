@@ -384,41 +384,6 @@ $(document).ready(function(){
   		horizontalScrolling: false
 	});
 
-	/*++++++++++++++++++++++++++++++++++++
-	 activity popups and pagination
-	 ++++++++++++++++++++++++++++++++++++++*/
-	var n_news_page = $('#hiddennews div.artical_page').length;
-	var n_news_visible_page = n_news_page < 6 ? n_news_page : 6;
-
-	$('.sync-pagenation').twbsPagination({
-		totalPages: n_news_page,
-		visiblePages: n_news_visible_page,
-		pageClass: 'pagination_page',
-		onPageClick: function(event, page){
-			var page_index = page -1;
-			var new_content = $("#hiddennews div.artical_page:eq("+page_index+")").clone();
-			$("#newspage").empty().append(new_content); //装载对应分页的内容
-
-			$('.popup-with-move-news').magnificPopup({
-				type: 'ajax',
-				alignTop: true,
-				overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
-			});
-			return false;
-		}
-	});
-
-	function initFirstPage(){
-		var new_content = $("#hiddennews div.artical_page:eq(0)").clone();
-		$("#newspage").empty().append(new_content); //装载对应分页的内容
-		$('.popup-with-move-news').magnificPopup({
-			type: 'ajax',
-			alignTop: true,
-			overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
-		});
-	}
-	initFirstPage();
-
 });
 
 
