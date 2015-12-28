@@ -124,7 +124,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	display: none;
 	z-index: 300;
 	cursor: crosshair;
-	cursor: url(../img/pointer.png), auto;
+	cursor: url(../../img/pointer.png), auto;
 }
 
 #runner {
@@ -157,7 +157,7 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 }
 
 #profile .portrate {
-	background-image: url('../img/qing_zhu_portray.jpg');
+	background-image: url('../../img/qing_zhu_portray.jpg');
 	width: 125px;
 	margin: 0 auto;
 	height: 125px;
@@ -1118,12 +1118,12 @@ ul.grid li a,ul.grid li img {
 /* contanct
  **************************************************/
 .contact-office {
-	background: #fff url('../img/office_pano.jpg') no-repeat;
+	background: #fff url('../../img/office_pano.jpg') no-repeat;
 	color: #fff;
 }
 
 .contact-lab {
-	background: #000 url('../img/office_pano_wuhan.jpg') no-repeat;
+	background: #000 url('../../img/office_pano_wuhan.jpg') no-repeat;
 	color: #fff;
 }
 

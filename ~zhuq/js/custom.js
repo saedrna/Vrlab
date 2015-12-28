@@ -390,7 +390,6 @@ $(document).ready(function(){
 	var n_news_page = $('#hiddennews div.artical_page').length;
 	var n_news_visible_page = n_news_page < 6 ? n_news_page : 6;
 
-
 	$('.sync-pagenation').twbsPagination({
 		totalPages: n_news_page,
 		visiblePages: n_news_visible_page,
