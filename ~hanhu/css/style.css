@@ -1116,18 +1116,14 @@ ul.grid li a,ul.grid li img {
 
 /* contanct
  **************************************************/
-.contact-office {
-	background: #fff url('../img/zblock.jpg') no-repeat;
+.contact-hk {
+	background: #fff url('../img/hongkong.jpg') no-repeat;
 }
 
-.contact-lab {
-	background: #000 url('../img/contact-lab.jpg') no-repeat;
+.contact-cd {
+	background: #000 url('../img/chengdu.png') no-repeat;
 	color: #fff;
 }
-
-/*.contact-office .icon-huge, .contact-lab .icon-huge{
-	color: #03cc85;
-}*/
 
 
 .icon-huge {

@@ -338,5 +338,16 @@ $(document).ready(function(){
 
 		fixedContentPos: false
 	});
+	$('.popup-qqmaps').magnificPopup({
+		type: 'iframe',
+		iframe: {
+			patterns: {
+				tencentmap: {
+					index: 'map.qq.com',
+					src: '%id%'
+				}
+			}
+		}
+	});
 
 });

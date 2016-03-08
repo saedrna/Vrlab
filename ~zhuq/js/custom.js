@@ -352,8 +352,6 @@ $(document).ready(function(){
 
 	$('.popup-with-move-video').magnificPopup({
 		type: 'iframe',
-
-
 		iframe: {
 			patterns: {
 				youku: {
@@ -365,8 +363,6 @@ $(document).ready(function(){
 	});
 	$('.popup-with-move-map').magnificPopup({
 		type: 'iframe',
-
-
 		iframe: {
 			patterns: {
 				tencentmap: {
