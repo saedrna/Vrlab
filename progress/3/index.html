@@ -1,0 +1,102 @@
+<div class="container white-popup-block mfp-prevent-close">
+    <div class="row">
+        <div class="col-md-12">
+            <article id="progress_2" class="post">
+                <div class="post-head">
+                    <h3 class="post-title">
+                        Oblique Sketch: 倾斜摄影测量交互式建模软件
+                    </h3>
+                    <div class="post-meta">
+                        <span>主要贡献：胡翰</span>•
+                        <time class="post-date" datetime="2016年10月29日 11:32:34" title="2016年10月29日 11:32:40">
+                            2016年10月29日
+                        </time>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Demo</div>
+                        <div class="panel-body">
+                            <iframe height=480 width=960 src='http://player.youku.com/embed/XMTc3ODk5NzM0MA==' frameborder=0 'allowfullscreen'></iframe>
+                            <iframe height=480 width=960 src='http://player.youku.com/embed/XMTc3OTAwOTg5Ng==' frameborder=0 'allowfullscreen'></iframe>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">研究意义</div>
+                        <div class="panel-body">
+                            <p>
+                                现有倾斜摄影测量方法已可以较高的自动化程度生成无拓扑、语义信息的三角网模型，并在此基础上获取表达连续地表的DSM/DOM等LOD0级三维模型。然而LOD0级模型仅为可视化模型，只具备简单的三维量测能力，急需从倾斜影像到单体化矢量模型生产的工艺流程，满足智慧城市建设的方方面面的智能应用。</p>
+                            <img class="img-responsive center-block" src="progress/3/1.jpg">
+                            <dl>
+                                <dt>LOD1模型</dt>
+                                <dd>
+                                    表达仅具有平面屋顶结构的块体模型，且屋顶与屋顶之间无交集，其实质为带高度信息的二维DLG拉伸结果，因此本质上是2.5维结构。LOD1模型较LOD0模型精细之处在于，LOD1模型对单体化建筑物进行了分割与表达，并且建筑物的高度信息隐式的蕴含了建筑物楼层等语义信息。且单体化的建筑物还可赋予其他具有实际意义的语义信息，如建筑物名称，地点，用途等。
+                                </dd>
+                                <dt>LOD2模型</dt>
+                                <dd>
+                                    在LOD1模型基础之上，增加了屋顶结构。按照不同结构类型，主要包含两种，一种为主要屋顶结构，如人字形屋顶、L型屋顶、梯形屋顶等；另一种是屋顶的细部结构，如房上房、女儿墙、屋檐等。通过定义屋顶结构，自然可以区分建筑物的屋顶与立面的语义信息，而该语义信息的选择，在三维GIS分析之中至关重要，如某些具体应用不仅需要用到屋顶结构，还需要屋顶与立面的相互关系。
+                                </dd>
+                                <dt>LOD3模型</dt>
+                                <dd>
+                                    在LOD2模型基础上更进一步。LOD2模型已经可以表达比较好的建筑物轮廓信息，在此基础之上，LOD3模型新增的是一些细部内容，如：烟囱、飘窗、立面窗户、阳台等结构。此类结构通常更加细碎，建模难度更高。
+                                </dd>
+                            </dl>
+                            <p>同时不同的细节层次模型，不仅表达了不同的几何、语义内容，也必然针对不同的应用种类。如LOD1模型可满足地图的导航、定位应用，LOD2模型可进行屋顶隔热性分析，LOD3由于具有独立的窗户等语义信息，因此可单独对不同的窗户进行光照分析、可视域分析用于房产估值、评估。如下图所示。</p>
+                            <img class="img-responsive center-block" src="progress/3/2.jpg">
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">关键技术</div>
+                        <div class="panel-body">
+                            <p>同时，不同细节层次模型，不仅定义了几何细节，该层次也同时定义了三维模型的精细重建次序，即首先勾绘屋顶二维结构，并拉伸建筑物高度，其次在屋顶重建建筑物的屋顶结构，最后再重建其他细部结构。不同模型的几何精细修编方法如下所示。</p>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>创建基础三维模型</dt>
+                                        <dd>
+                                            <p>
+                                                由于从影像，屏幕等二维信息，在三维空间中操作，存在自由度缺失，需三维空间中存在辅助点、线、面等信息。本项目采用光线追踪的方式，确定一个与Z轴平行的基元平面，作为在二维与三维空间中进行勾绘的基础与起始点。由于大范围三维场景是动态从磁盘加载、卸载，因此进行光线追踪的三维索引也需要进行同时动态创建与更新。本项目采用AABB树作为三角网的三维索引，并在此基础上在从磁盘加载、卸载三维节点时，动态更新AABB树。AABB树的基本原理是，在空间中渐进式的对三维模型创建包围盒索引，直至用户定义的精细层级，如下图所示。由于其索引仅包含包围盒信息，因此该索引的插入、删除等操作均仅在对应包围盒内局部操作完成，可满足本项目动态更新的速度要求。在进行光线追踪查询时，亦是由粗到精的进行包围盒相交查询，仅有到子节点时，才进行实际的三角网相交判断，其速率也可满足本项目需求。
+                                            </p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>LOD1模型重建</dt>
+                                        <dd>
+                                            <p>由于LOD1模型实质为具有高度信息的二维建筑物边界，因此在利用基准平面获取了基准高度之后，余下操作仅需要勾绘二维建筑物边界，并拉伸建筑物高度即可。这决定了LOD1模型创建最优的方式如下：1、采用上述方式，利用光线追踪确定屋顶高度；2、在建筑物屋顶区域可视性最佳的影像的二维影像视图中，进行二维建筑物边界线勾绘；3、拉伸建筑物高度至建筑物底部。如下图所示。</p>
+                                            <img class="img-responsive center-block" src="progress/3/3.jpg">
+                                            <p class="center-block">LOD1模型的勾绘步骤：1）创建基准平面；2）勾绘屋顶二维边界；3）拉伸建筑物高度；4）LOD1模型</p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>LOD2模型重建</dt>
+                                        <dd>
+                                            <p>在LOD1模型基础之上，LOD2模型增加信息为屋顶结构。因此LOD2模型主要建模步骤包括两点：1）拉伸屋顶的主要结构；2）勾绘其他附着于主要结构上的屋顶细节，如房上房、女儿墙等，如下图所示。</p>
+                                            <img class="img-responsive center-block" src="progress/3/4.jpg">
+                                            <p class="center-block">LOD2模型勾绘方法：1）勾画屋顶结构线；2）拉伸屋顶结构高度；3）对边缘内缩一定距离；4）拉伸女儿墙高度；5）通过推进方式整平不需要的墙面；6）LOD2模型</p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>LOD3模型重建</dt>
+                                        <dd>
+                                            <p>LOD3模型，主要是一些细节特征，如窗户、阳台等。此类特征具有如下特点，首先由于结构比较细碎，所以结构较为复杂，传统常规方式进行勾绘工作量太大；其次此类特征在一个建筑物，甚至是多个建筑物之中通常是具有明显的重复结构，因此可通过复制粘贴方式重建。针对上述特点，本项目开创了一种模型驱动的LOD3模型重建方式，以窗户为例，用户仅需要在立面上一键式粘贴一个模型，即可实现窗台的重建，如下图所示。</p>
+                                            <img class="img-responsive center-block" src="progress/3/5.jpg">
+                                            <p class="center-block"> LOD3模型重建：1）构造垂直以及水平的辅助线，该辅助线主要是使不同窗户在复制粘贴时可保持水平；2）对准基准点，一键式创建一个窗台模型；3）通过缩放方式，调整模型参数；4）粘贴模型在一个竖直区域；5）在水平方向粘贴模型
+                                            </p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
