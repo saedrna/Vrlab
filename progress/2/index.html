@@ -1,0 +1,84 @@
+<div class="container white-popup-block mfp-prevent-close">
+    <div class="row">
+        <div class="col-md-12">
+            <article id="progress_2" class="post">
+                <div class="post-head">
+                    <h3 class="post-title">
+                        RGB-D高精度室内三维重建
+                    </h3>
+                    <div class="post-meta">
+                        <span>主要贡献：汤圣君</span>•
+                        <time class="post-date" datetime="2016年10月29日 11:32:34" title="2016年10月29日 11:32:40">
+                            2016年10月29日
+                        </time>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">设备介绍</div>
+                        <div class="panel-body">
+                            <p>新兴的RGB-D传感器（如微软的Kinect，Primer Sense的Structure Sensor），通过价格低廉，实时，以及可接受的量测精度打入室内建模市场，
+                                其深度相机主要是以结构光原理进行成像，通常具有激光投射器、光学衍射元件（DOE）、红外摄像头三大核心器件。它可以同时产生RGB图像和深度图像，如下图所示，工作机制和视频流类似，以每秒30帧的速度收集数据。下图中是Primer
+                                sense 的strucutre
+                                sensor相机，它的doe是由两部分组成的，一个是扩散片，一个是衍射片。先通过扩散成一个区域的随机散斑，然后复制成九份，投射到了被摄物体上。根据红外摄像头捕捉到的红外散斑，PS1080这个芯片就可以快速解算出各个点的深度信息。</p>
+                            <img class="img-responsive center-block" src="progress/2/1.jpg">
+                            <p>由于RGB-D传感器实际上将结合了三维结构和二维图像结合在一起，所以与传统的只通过激光点云或者只通过RGB图像序列进行SLAM有所不同</p>
+                            <img class="img-responsive center-block" src="progress/2/2.jpg">
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">关键技术</div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>深度数据模型</dt>
+                                        <dd>
+                                            <p>
+                                                RGB-D的一大优势在于每一帧获取的RGB图像和深度图像能够逐像素匹配在一起，针对深度图像上的每一个像素，都可以获取到它对应的深度值，然而，RGB-D相机的量测范围有限，其数据量测精度和量测距离有关，一般只有3-4米以下的深度数据可用于室内建模。下图为量测距离与量测精度图表。
+                                            </p>
+                                            <img class="img-responsive center-block" src="progress/2/3.jpg">
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>回环检测</dt>
+                                        <dd>
+                                            <p>回环检测的作用主要是去除Drift Error，
+                                                就好比一个人蒙着眼睛，如果让你一直走直线，实际情况是，随着你走的距离越长，产生的偏差越大，所以需要不断的检测是否回到同一个位置，纠正姿态信息。主要分为大回环，随机回环和局部回环三类</p>
+                                            <p>
+                                                1）大回环：也叫全局回环检测，进行大回环检测需要知道我们什么时候回到起点，一般在进行三维测图时我们规定一个起始位置，最后结束测图的时候会重新回来，一般这个时候，就用起始数据帧与终止数据帧进行回环检测，得到对应的约束，如全局回环图所示，为三维测图时获取的首尾图像，在回环框架图中，‘e14,1’，‘e14,2’就是全局回环检测得到的边界约束。
+                                            </p>
+                                            <img class="img-responsive center-block" src="progress/2/4.jpg">
+                                            <p>
+                                                2）随机回环：随机回环即是在当前关键帧时，与前面所有的关键帧进行随机匹配，可以随机选择5个或者10个关键帧进行匹配，得到对应的边界约束，下面回环检测框架中短虚线表示的就是随机回环检测到的边界约束，e4,8</p>
+                                            <p>
+                                                3）局部回环：局部回环是最常用的回环检测方法，实际上是在当前数据帧位置下，做一个缓冲区，如下图局部回环检测，得到相邻的关键帧索引，然后将当前数据帧与缓冲区内所有的关键帧一一进行匹配，得到对应的边界约束，回环检测框架中adjacent
+                                                edge即是局部回环检测得到的边界约束。</p>
+                                            <img class="img-responsive center-block" src="progress/2/5.jpg">
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li class="list-group-item">
+                                    <dl>
+                                        <dt>全局优化</dt>
+                                        <dd>
+                                            <p>
+                                                经过回环检测之后，需要对数据间不一致进行全局优化，通过采用图优化的方法将数据帧之间的误差降低到最小。如下图所示，优化前的图模型首尾数据帧之间有很大误差，优化之后的图模型可将误差减少和分散，得到精度更高的三维模型。</p>
+                                            <img class="img-responsive center-block" src="progress/2/6.jpg">
+                                            <p class="text-center">优化前</p>
+                                            <img class="img-responsive center-block" src="progress/2/7.jpg">
+                                            <p class="text-center">优化前</p>
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
