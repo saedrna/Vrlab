@@ -48,6 +48,11 @@
     <link rel="stylesheet" href="css/modern-business.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        .thumb {
+            margin-bottom: 30px;
+        }
+    </style>
 
 
 </head>
@@ -72,9 +77,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#home" target="_self">简介</a></li>
                     <li><a href="#research" target="_self">研究方向</a></li>
+                    <li><a href="#progress" target="_self">研究进展</a></li>
                     <li><a href="#people" target="_self">团队成员</a></li>
                     <li><a href="#activity" target="_self">新闻交流</a></li>
                     <li><a href="#gallery" target="_self">师生风采</a></li>
+                    <li><a href="#parterner" target="_self">合作伙伴</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -148,9 +155,9 @@
         <!-- VRLab简介 Section -->
         <div class="row" id="home">
             <div class="col-lg-12">
-                <h1 class="page-header">
+                <h2 class="page-header">
                     VRLAB简介
-                </h1>
+                </h2>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -421,6 +428,85 @@
             </div>
             <!-- Jssor Slider End -->
         </div>
+        <!-- 研究进展 Section -->
+        <div class="row" id="progress">
+            <div class="col-lg-12">
+                <h2 class="page-header">研究进展</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="text-center">
+                    <ul id="progress-pagination" class="sync-pagenation pagination-sm pagination"></ul>
+                </div>
+                <div id="progress-page"></div>
+                <div class="text-center">
+                    <ul id="progress-pagination" class="sync-pagenation pagination-sm pagination"></ul>
+                </div>
+                <div id="hidden-progress" style="display: none">
+                    <div class="artical_page">
+                        <article id="progress-3" class="post">
+                            <div class="post-head">
+                                <h3 class="post-title">
+                                    <a class="popup-with-move-news" href="progress/3/index.html">Oblique Sketch：倾斜摄影测量交互式建模软件
+                                    </a>
+                                </h3>
+                                <div class="post-meta">
+                                    <span>完成人：胡翰</span>
+                                    <time class="post-date" datetime="2016年10月29日 11:37:32" title="2016年10月29日 11:37:40">2016年10月29日</time>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>
+                                    利用现有倾斜摄影测量产品，如三角网，DSM/DOM等，通过二维影像与三维三角网一起交互式勾绘方式，提高建模效率，降低三维建模软件专业要求。
+                                </p>
+                            </div>
+                            <div class="post-link">
+                                <a class="btn btn-info popup-with-move-news" href="progress/3/index.html">阅读全文</a>
+                            </div>
+                        </article>
+                        <article id="progress-2" class="post">
+                            <div class="post-head">
+                                <h3 class="post-title">
+                                    <a class="popup-with-move-news" href="progress/2/index.html">RGB-D高精度室内三维重建
+                                    </a>
+                                </h3>
+                                <div class="post-meta">
+                                    <span>完成人：汤圣君</span>
+                                    <time class="post-date" datetime="2016年10月29日 11:37:32" title="2016年10月29日 11:37:40">2016年10月29日</time>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>
+                                    采用Kinect，Structure Sensor等RGB-D设备，进行自动室内三维建模。
+                                </p>
+                            </div>
+                            <div class="post-link">
+                                <a class="btn btn-info popup-with-move-news" href="progress/2/index.html">阅读全文</a>
+                            </div>
+                        </article>
+                        <article id="progress-1" class="post">
+                            <div class="post-head">
+                                <h3 class="post-title">
+                                    <a class="popup-with-move-video" href="http://player.youku.com/embed/XMTc3ODc3ODAwNA==">成都人的绿色情怀之海绵城市
+                                    </a>
+                                </h3>
+                                <div class="post-meta">
+                                    <span>作者：胡翰</span>
+                                    <time class="post-date" datetime="2016年10月29日 11:21:16" title="2016年10月29日 11:21:24">2016年10月29日</time>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p>
+                                    朱庆教授接收成都日报专访畅谈海绵城市建设，<a href="http://appuser.people.com.cn/share/?itemid=1887666893915136&pjcode=2_2015_03_26&from=singlemessage&isappinstalled=0" target="_blank">采访链接</a>。
+                                </p>
+                            </div>
+                            <div class="post-link">
+                                <a class="btn btn-info popup-with-move-video" href="http://player.youku.com/embed/XMTc3ODc3ODAwNA==">阅读全文</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 团队成员 Section -->
         <div class="row" id="people">
@@ -552,11 +638,11 @@
             </div>
             <div class="col-md-12">
                 <div class="text-center">
-                    <ul id="newspagination" class="sync-pagenation pagination-sm pagination"></ul>
+                    <ul id="news-pagination" class="sync-pagenation pagination-sm pagination"></ul>
                 </div>
                 <div id="newspage"></div>
                 <div class="text-center">
-                    <ul id="newspagination" class="sync-pagenation pagination-sm pagination"></ul>
+                    <ul id="news-pagination" class="sync-pagenation pagination-sm pagination"></ul>
                 </div>
                 <div id="hiddennews" style="display: none">
                     <div class="artical_page">
@@ -2212,6 +2298,45 @@
                         </li>
                     </ul>
 
+                </div>
+            </div>
+        </div>
+
+        <!-- 合作伙伴 Section -->
+        <div class="row" id="parterner">
+            <div class="col-lg-12">
+                <h2 class="page-header">合作伙伴</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="http://www.lmars.whu.edu.cn/" target="_blank">
+                        <img class="img-responsive" src="img/liesmars.jpg" alt>
+                    </a>
+                </div>
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="http://gsee.swjtu.edu.cn/" target="_blank">
+                        <img class="img-responsive" src="img/gsee.png" alt>
+                    </a>
+                </div>
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="http://www.lsgi.polyu.edu.hk/home/index.asp" target="_blank">
+                        <img class="img-responsive" src="img/lsgi.jpg" alt>
+                    </a>
+                </div>
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="http://www.iseis.cuhk.edu.hk/ch/index.html" target="_blank">
+                        <img class="img-responsive" src="img/iseis.jpg" alt>
+                    </a>
+                </div>
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="#">
+                        <img class="img-responsive" src="img/hitarget.jpg" alt>
+                    </a>
+                </div>
+                <div class="col-md-4 col-xs-6 thumb">
+                    <a class="thumbnail" href="http://www.sbsm.gov.cn/" target="_blank">
+                        <img class="img-responsive" src="img/scbsm.jpg" alt>
+                    </a>
                 </div>
             </div>
         </div>

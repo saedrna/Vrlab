@@ -5,14 +5,14 @@ $(document).ready(function(){
 
     /*********************navbar*********************/
     {
-        function removeClass(){
+        function remove_class(){
             $('ul.nav li').each(function (){
                $(this).removeClass('active') ;
             });
         };
 
         $('ul.nav li').click(function(e){
-            removeClass();
+            remove_class();
             $(this).addClass('active');
         });
     }
@@ -39,7 +39,7 @@ $(document).ready(function(){
     }
 
     /*********************research*********************/
-    {
+    function init_research_animation() {
         var _SlideshowTransitions = [
             //Fade Twins
             { $Duration: 700, $Opacity: 2, $Brother: { $Duration: 1000, $Opacity: 2 } },
@@ -125,14 +125,14 @@ $(document).ready(function(){
         //responsive code begin
         //you can remove responsive code if you don't want the slider scales while window resizes
         function ScaleSlider() {
-            var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
-            if (parentWidth) {
-                var sliderWidth = parentWidth;
+            var parent_width = jssor_slider1.$Elmt.parentNode.clientWidth;
+            if (parent_width) {
+                var slider_width = parent_width;
 
                 //keep the slider width no more than 810
-                sliderWidth = Math.min(sliderWidth, 1960);
+                slider_width = Math.min(slider_width, 1960);
 
-                jssor_slider1.$ScaleWidth(sliderWidth);
+                jssor_slider1.$ScaleWidth(slider_width);
             }
             else
                 window.setTimeout(ScaleSlider, 30);
@@ -142,122 +142,121 @@ $(document).ready(function(){
         $(window).bind("load", ScaleSlider);
         $(window).bind("resize", ScaleSlider);
         $(window).bind("orientationchange", ScaleSlider);
-        //responsive code end
     }
+    init_research_animation();
 
     /****************lab personnel carousel****************/
-    {
-        function generateLabCarousel() {
+    function generate_lab_carousel() {
+        var defaultCss = {
+            width: 100,
+            height: 100,
+            marginTop: 50,
+            marginRight: 0,
+            marginLeft: 0,
+            opacity: 0.2
+        };
+        var selectedCss = {
+            width: 150,
+            height: 150,
+            marginTop: 30,
+            marginRight: -25,
+            marginLeft: -25,
+            opacity: 1
+        };
+        var aniOpts = {
+            queue: false,
+            duration: 300
+            //easing: 'cubic'
+        };
+        var $car = $('#lab-carousel');
+        $car.find('img').css('zIndex', 1).css(defaultCss);
 
-            var defaultCss = {
-                width: 100,
-                height: 100,
-                marginTop: 50,
-                marginRight: 0,
-                marginLeft: 0,
-                opacity: 0.2
-            };
-            var selectedCss = {
-                width: 150,
-                height: 150,
-                marginTop: 30,
-                marginRight: -25,
-                marginLeft: -25,
-                opacity: 1
-            };
-            var aniOpts = {
-                queue: false,
-                duration: 300
-                //easing: 'cubic'
-            };
-            var $car = $('#lab-carousel');
-            $car.find('img').css('zIndex', 1).css( defaultCss );
+        $car.children('div').each(function (i) {
+            $(this).data('index', i);
+        });
 
-            $car.children('div').each(function(i){
-                $(this).data('index',i);
-            });
-
-            $car.carouFredSel({
-                circular: true,
-                infinite: true,
-                width: '100%',
-                height: 250,
-                items: {
-                    visible:3,
-                    start:1
-                },
-                prev: '#lab_prev',
-                next: '#lab_next',
-                auto: false,
-                swipe : {
-                    onTouch :true,
-                    onMouse :true
-                },
-                scroll: {
-                    items: 1,
-                    duration: 300,
-                    //easing: 'cubic',
-                    onBefore: function( data ) {
-                        var $comming = data.items.visible.eq(1),
-                            $going = data.items.old.eq(1),
-                            $commingdetail = $("div#lab-details div").eq($comming.data('index')),
-                            $goingdetail = $("div#lab-details div").eq($going.data('index'));
+        $car.carouFredSel({
+            circular: true,
+            infinite: true,
+            width: '100%',
+            height: 250,
+            items: {
+                visible: 3,
+                start: 1
+            },
+            prev: '#lab_prev',
+            next: '#lab_next',
+            auto: false,
+            swipe: {
+                onTouch: true,
+                onMouse: true
+            },
+            scroll: {
+                items: 1,
+                duration: 300,
+                //easing: 'cubic',
+                onBefore: function (data) {
+                    var $comming = data.items.visible.eq(1),
+                        $going = data.items.old.eq(1),
+                        $commingdetail = $("div#lab-details div").eq($comming.data('index')),
+                        $goingdetail = $("div#lab-details div").eq($going.data('index'));
 
 
-                        $goingdetail.fadeOut(100,function(){
-                            $goingdetail.siblings().hide();
-                            $commingdetail.fadeIn(300);
-                        });
+                    $goingdetail.fadeOut(100, function () {
+                        $goingdetail.siblings().hide();
+                        $commingdetail.fadeIn(300);
+                    });
 
 
-                        $comming.find('img').css('zIndex', 2).animate( selectedCss, aniOpts );
-                        data.items.old.eq(1).find('img').css('zIndex', 1).animate( defaultCss, aniOpts );
-                    }
+                    $comming.find('img').css('zIndex', 2).animate(selectedCss, aniOpts);
+                    data.items.old.eq(1).find('img').css('zIndex', 1).animate(defaultCss, aniOpts);
                 }
+            }
 
-            });
-        }
-        generateLabCarousel();
+        });
     }
+    generate_lab_carousel();
 
+    /**************** activity popups and pagination ****************/
+    function init_news_and_pagenation() {
+        var n_news_page = $('#hiddennews div.artical_page').length;
+        var n_news_visible_page = n_news_page < 6 ? n_news_page : 6;
 
-    /*++++++++++++++++++++++++++++++++++++
-     activity popups and pagination
-     ++++++++++++++++++++++++++++++++++++++*/
-    var n_news_page = $('#hiddennews div.artical_page').length;
-    var n_news_visible_page = n_news_page < 6 ? n_news_page : 6;
+        $('#news-pagination.sync-pagenation').twbsPagination({
+            totalPages: n_news_page,
+            visiblePages: n_news_visible_page,
+            pageClass: 'pagination_page',
+            onPageClick: function (event, page) {
+                var page_index = page - 1;
+                var new_content = $("#hiddennews div.artical_page:eq(" + page_index + ")").clone();
+                $("#newspage").empty().append(new_content); //×°ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    $('.sync-pagenation').twbsPagination({
-        totalPages: n_news_page,
-        visiblePages: n_news_visible_page,
-        pageClass: 'pagination_page',
-        onPageClick: function(event, page){
-            var page_index = page -1;
-            var new_content = $("#hiddennews div.artical_page:eq("+page_index+")").clone();
-            $("#newspage").empty().append(new_content); //×°ÔØ¶ÔÓ¦·ÖÒ³µÄÄÚÈÝ
+                $('a.popup-with-move-news').magnificPopup({
+                    type: 'ajax',
+                    alignTop: true,
+                    overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
+                });
+                return false;
+            }
+        });
 
-            $('.popup-with-move-news').magnificPopup({
+        function init_first_page() {
+            var new_content = $("#hiddennews div.artical_page:eq(0)").clone();
+            $("#newspage").empty().append(new_content); //×°ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            $('a.popup-with-move-news').magnificPopup({
                 type: 'ajax',
                 alignTop: true,
                 overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
             });
-            return false;
         }
-    });
-
-    function initFirstPage(){
-        var new_content = $("#hiddennews div.artical_page:eq(0)").clone();
-        $("#newspage").empty().append(new_content); //×°ÔØ¶ÔÓ¦·ÖÒ³µÄÄÚÈÝ
-        $('.popup-with-move-news').magnificPopup({
-            type: 'ajax',
-            alignTop: true,
-            overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
-        });
+        init_first_page();
     }
-    initFirstPage();
+    init_news_and_pagenation();
 
-    /*********************gallery*********************/
-    {
+    /**
+     * init gallery
+     */
+    function init_gallery() {
         $(".grid").on("mouseenter","li",function(){
             new TweenLite($(this).find(".over"),0.4,{bottom:0,top:0});
         }).on("mouseleave","li",function(){
@@ -282,8 +281,6 @@ $(document).ready(function(){
 
         $('.popup-with-move-video').magnificPopup({
             type: 'iframe',
-
-
             iframe: {
                 patterns: {
                     youku: {
@@ -294,8 +291,67 @@ $(document).ready(function(){
             }
         });
     }
+    init_gallery();
 
+    /**
+     * ç ”ç©¶è¿›å±•ç›¸å…³å†…å®¹åˆå§‹åŒ–
+     */
+    function init_research_progress_pagination() {
+        var num_progress_page = $('#hidden-progress div.artical_page').length;
+        var num_progress_visible_page = num_progress_page < 6 ? num_progress_page : 6;
 
+        $('#progress-pagination.sync-pagenation').twbsPagination({
+            totalPages: num_progress_page,
+            visiblePages: num_progress_visible_page,
+            pageClass: 'pagination_page',
+            onPageClick: function (event, page) {
+                var page_index = page - 1;
+                var new_content = $("#hidden-progress div.artical_page:eq(" + page_index + ")").clone();
+                $("#hidden-progress").empty().append(new_content); //×°ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+                $('a.popup-with-move-news').magnificPopup({
+                    type: 'ajax',
+                    alignTop: true,
+                    overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
+                });
+                $('a.popup-with-move-video').magnificPopup({
+                    type: 'iframe',
+                    iframe: {
+                        patterns: {
+                            youku: {
+                                index: 'youku.com',
+                                src: '%id%'
+                            }
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+
+        function init_first_page() {
+            var new_content = $("#hidden-progress div.artical_page:eq(0)").clone();
+            $("#progress-page").empty().append(new_content); //×°ï¿½Ø¶ï¿½Ó¦ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            $('a.popup-with-move-news').magnificPopup({
+                type: 'ajax',
+                alignTop: true,
+                overflowY: 'scroll' // as we know that popup content is tall we set scroll overflow by default to avoid jump
+            });
+            $('a.popup-with-move-video').magnificPopup({
+                type: 'iframe',
+                iframe: {
+                    patterns: {
+                        youku: {
+                            index: 'youku.com',
+                            src: '%id%'
+                        }
+                    }
+                }
+            });
+        }
+        init_first_page();
+    }
+    init_research_progress_pagination()
 });
 
 
@@ -308,6 +364,5 @@ $(window).load(function(){
     // initialize
     $container.masonry({
         itemSelector: 'li'
-
     });
 });
