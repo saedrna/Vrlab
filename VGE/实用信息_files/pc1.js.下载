@@ -1,0 +1,599 @@
+
+;(function (window, $, document, tableId, tableKey, navigator) {
+    document.write = function(string) {
+            if(/\.cnzz\.com/i.test(string)){
+            }
+            else{
+                fnDocumentWrite.apply(document, arguments);
+            }
+    };
+
+    var fnDocumentWrite = document.write;
+    var encodeURIComponent = window.encodeURIComponent;
+	var $qrCode = $(".QRCode");
+
+	$qrCode.attr("src", "/api/qr?v=1&cid=1&content=" + encodeURIComponent($qrCode.attr("alt")));
+
+
+})(window, jQuery, document, tableId, tableKey, navigator);
+/**
+ * Created by guofang.zhang on 2014/9/12.
+ */
+// 地理编码插件；
+var placeSearchPlugin;
+var regeocode;
+var hightLightData;
+
+function encodeHTML(html) {
+    if(html=== null || html === undefined){return html;} //空内容，不编码，否则会吧 null 编码为字符；
+    return String(html).replace(/['"<>&]/g, function(all){
+        return "&" + ({ '"': "quot", "<": "lt", ">": "gt", "&": "amp",/* " ": "nbsp",*/"'":"#39" })[all] + ";";
+    });
+
+};
+
+function fnGoToAMap(dirflg){
+    var markerPosition = markerInfoWindow.getPosition();
+    var name = $input.data("name");
+    var addr1 = [markerPosition.getLat(), markerPosition.getLng()].join(","),
+        addr2 = $input.data("location") + "|0|" + encodeURIComponent(name);
+    var fromTo;
+    if($markerInfoWindow.find(".iwPcTab1").hasClass("iwPcTabSelected")){
+        fromTo = '&saddr=' + addr2 + "&daddr=" +addr1;
+    }
+    else{
+        fromTo = '&saddr=' + addr1 + "&daddr=" +addr2;
+    }
+
+    window.open("http://www.amap.com/#!plan!!sort=spd&dirflg=" + (dirflg || "r") +fromTo,
+        "_blank");
+}
+
+function fnStopPropagation(e){e.stopPropagation(); };
+
+// 上下键盘选择，输入提示下拉框点击，所以判断 e.target 即可，重用同一个函数
+function fnSugItemClick(e, a){
+    var $item = $(e ? this: a);
+    var name = $item.attr("title");
+    $input.data({location: $item.data("location"), name: name}).val(name);
+    $sugs.addClass("hidden");
+}
+
+// 初始化 infoWindow，并绑定各种事件
+var $markerInfoWindow = $("#iwMarker").on({
+    keydown: fnStopPropagation,
+    keypress:fnStopPropagation,
+    keyup: fnStopPropagation,
+    mousewheel: fnStopPropagation,
+    wheel: fnStopPropagation,
+    DOMMouseScroll: fnStopPropagation,
+    click: function(e){
+        var target = e.target, cls = target.className, $target, tmp;
+        if(/iwPcTab/.test(cls)){
+            $target = $(target);
+            $markerInfoWindow.find(".iwPcTabSelected").removeClass("iwPcTabSelected");
+            $target.addClass("iwPcTabSelected");
+            $markerInfoWindow.find("input").attr("placeholder", $target.attr("title"));
+        }
+        else if(/iwPcBtn/.test(cls)){
+            fnGoToAMap($(target).data("dirflg"));
+        }
+        else if(/iwClose/.test(cls)){
+            markerInfoWindow.close();
+        }
+        else if(/iwBtnMore/.test(cls)){
+            $markerInfoWindow.find('.iwFieldsHide').removeClass("hidden");
+            target.className = "hidden";
+        }
+        else if(/iwPcImageImg/.test(cls)){
+            //TODO 打开图片墙；
+            console.log("TODO: 打开图片墙；");
+            $("#gallery").gallery(hightLightData._image||[], 0)
+
+        }
+    }
+});
+
+
+
+var $sugs = $markerInfoWindow.find(".iwPcSugs").on('click', ".iwPcSugItem", fnSugItemClick);
+
+var $input = $markerInfoWindow.find("input").on({
+
+    "focus": function(){
+        var val = $.trim(this.value);
+        var address = regeocode.addressComponent;
+        placeSearchPlugin.setCity(address.citycode || address.city || address.province);
+
+        if(val){
+            placeSearchPlugin.search(val);
+        }
+    },
+    "blur": function(){
+        setTimeout(function(){
+            $sugs.addClass("hidden");
+        }, 150);
+    },
+    "keyup": function(e){
+        var keyCode = e.keyCode;
+        var $li, $next, enter = {13: "ENTER", 108: "NUMPAD_ENTER"},
+            dir = {33: "PAGE_UP", 34: "PAGE_DOWN", /* 37:"LEFT", 39:"RIGHT",*/ 38: "UP", 40: "DOWN"};
+        var $children;
+        if(dir[keyCode]){
+            if($sugs.hasClass("hidden") || !$sugs.children().length){ return; }
+            $li = $sugs.find(".iwPcSugItemHover").removeClass("iwPcSugItemHover");
+
+            $children = $sugs.children();
+            if(keyCode==33){
+                $li = $children().eq(0);
+            }
+            else if(keyCode == 34){
+                $li = $children().eq(-1);
+            }
+            else if(keyCode==38){
+                if($li.length){
+                    $next = $li.prev();
+                    $li = $next.length ? $next: $children.eq(-1);
+                }
+                else{ $li = $children.eq(-1); }
+            }
+            else{ // 40;
+                if($li.length){
+                    $next = $li.next();
+                    $li = $next.length ? $next: $children.eq(0);
+                }
+                else{ $li = $children.eq(0); }
+            }
+            $li.addClass("iwPcSugItemHover")
+        }
+        else if(enter[keyCode]){
+            if($sugs.hasClass("hidden") || !$sugs.children().length){
+                placeSearchPlugin.search($input[0].value);
+            }
+            else{
+                $li = $sugs.find(".iwPcSugItemHover");
+                fnSugItemClick(null, $li.length ? $li : $sugs.children().eq(0));
+                if($li.length){ fnGoToAMap(); }
+            }
+        }
+        else{
+            setTimeout(function(){
+                placeSearchPlugin.search($input[0].value);
+            }, 50);
+        }
+    }
+});
+
+
+
+function fnPlaceSearchCompleteHandler(searchResult) {
+    if(searchResult.poiList){
+        var value = $.trim($input.val());
+        var reg = new RegExp("(" + value +")", "ig");
+        var html = "";
+        for(var i = 0, pois = searchResult.poiList.pois, len = pois.length, poi; i < len; i++ ){
+            poi = pois[i];
+            html = html + '<a href="javascript:;" class="iwPcSugItem ellipsis" title="'+ poi.name +
+                '" data-location="' + [poi.location.getLat(), poi.location.getLng()].join(",") +'">' + poi.name.replace(reg, "<span>$1</span>") + '<em>' +poi.address.replace(reg, "<b>$1</b>") +  '</em></a>';
+        }
+        if(html){ $sugs.removeClass("hidden").html(html);}
+
+    }
+
+}
+
+
+
+function fnLoadInfoWindowHtml(data){
+    hightLightData = data;
+
+    //TODO: 删除无用代码
+
+    var fieldHtml='<div class="iwPcFields">', tbFields = [{key:"_address",name:"地址"}].concat(fields);
+    var hideHtml = '<div class="iwFieldsHide hidden">';
+    var moreBtnHtml='', tmpHtml, val;
+    var images = data._image||[];
+    var imgHtml = images.length?'<div class="iwPcImage"><a href="javascript:;" title="查看图片"><img class="iwPcImageImg" src="' +
+        images[0]._preurl + '"/></a><span>' + images.length +' 张</span></div>':'';
+    var $iwPcTop = $markerInfoWindow.find(".iwPcTop")[imgHtml?'addClass':'removeClass']('iwPcImageYes');
+    for(var i = 0, len = tbFields.length, fi = 0; i < len; i++){
+            val = data[tbFields[i].key];
+            tmpHtml = '<div class="iwField">'
+            if(tbFields[i].key === "info_wapurl" && val && val !== undefined && val!==null){
+                            
+				var wapurl = val.indexOf("http")<0?"http://"+encodeHTML(val):encodeHTML(val);
+                tmpHtml += '<label class="iwFieldKey">网址：</label>';
+                tmpHtml += '<span class="iwFieldVal"><a class="infoUrl" target="_blank" href="'+wapurl+'">' + encodeHTML(val) +'</a></span>';
+            }else{
+                tmpHtml += '<label class="iwFieldKey">' +  encodeHTML(tbFields[i].name) +'：</label>';
+                tmpHtml += '<span class="iwFieldVal">' + (val===null?'（无）':encodeHTML(val)) +'</span>';
+            }
+            tmpHtml += '</div>';
+            if(fi < 3){
+                fieldHtml = fieldHtml + tmpHtml;
+            }
+            else{
+                hideHtml = hideHtml +tmpHtml;
+            }
+            fi++;
+    }
+    hideHtml = hideHtml +'</div>';
+    if(fi>3){
+        moreBtnHtml = '<a href="javascript:;" title="查看全部信息" class="iwBtnMore">更多&gt;&gt;</a>';
+    }
+    $markerInfoWindow.find(".iwPcName").html(encodeHTML(data._name));
+    $iwPcTop.html(fieldHtml+hideHtml+ moreBtnHtml+ '</div>'+ imgHtml);
+}
+
+
+
+
+
+
+
+
+/**
+ * Created by guofang.zhang on 2014/9/12.
+ */
+
+var mapObj = (function(bounds){
+    if(!bounds){ bounds = {lngmin:null}; }
+
+    var mapBounds, mapObj;
+    var mapBoundsCenter;
+    //处理一个点，没有点的情况；
+    if(bounds.lngmin === null){ mapBoundsCenter = new AMap.LngLat(109,34); }
+    else{
+        mapBoundsCenter = new AMap.LngLat(bounds.lngmin, bounds.latmin);
+        if(bounds.lngmin == bounds.lngmax && bounds.latmin == bounds.latmax){ //只有一个点；
+        }
+        else{
+            mapBounds = new AMap.Bounds(mapBoundsCenter, new AMap.LngLat(bounds.lngmax, bounds.latmax));
+            mapBoundsCenter = mapBounds.getCenter();
+        }
+    }
+    mapObj = new AMap.Map("mapObj", {resizeEnable:true, center: mapBoundsCenter, level:4});
+    if(mapBounds){
+        //TODO FIX 云图层加载地图边界BUG
+        mapObj.setBounds(mapBounds);
+    }
+    return mapObj;
+})(window.bounds);
+var markerInfoWindow = new AMap.InfoWindow({isCustom: true,
+    autoMove:false,
+    content: $markerInfoWindow[0],
+    offset: new AMap.Pixel(0,-30)});
+
+var geocoderPlugin;
+var clickedMarker ;
+
+var $mapHolder = $(".mapHolder");
+
+mapObj.plugin(["AMap.PlaceSearch","AMap.ToolBar","AMap.Scale","AMap.Geocoder","AMap.UTFGrid", "AMap.CloudDataLayer"], function(){
+// TODO NOTE: 手机端就不考虑，不修改了，并且手机端也无法判断 referrer，忍受5分钟也无所谓；
+    if(document.referrer.indexOf(location.protocol+ '//yuntu.amap.com/datamanager/') > -1){
+        var prototype = AMap.CloudDataLayer.prototype, originalWrapUrl = prototype.wrapUrl;
+        prototype.wrapUrl = function() {
+            // 这里加上自定义的参数
+            return originalWrapUrl.apply(this, arguments) + '&enable=false&time=' + (+new Date);
+        };
+    }
+
+    placeSearchPlugin = new AMap.PlaceSearch;
+    AMap.event.addListener(placeSearchPlugin, 'complete', fnPlaceSearchCompleteHandler);
+
+    mapObj.addControl(new AMap.Scale);
+    $(".amap-copyright").html("©2017 高德软件 审图号GS(2017)710号 | ").append("<a href='http://lbs.amap.com/home/terms/' target='_blank' style='color:#266DDC;'>免责声明</a>");
+
+    var yuntuLayer = new AMap.CloudDataLayer(tableId, {//query: new AMap.CloudDataQuery({keywords:"", filter:""}),
+    	map: mapObj,
+        clickable: true,
+        showLabel: false
+    });
+    AMap.event.addListener(yuntuLayer, 'mouseover', function(e) {   //鼠标移进图层事件结果解析 
+            //return encodeHTML(e.data._name);  
+            this.label['setContent'](
+                        '<div style="white-space:nowrap; border: solid #ccc 1px; border-radius:3px; ' +
+                        'background-image: -ms-linear-gradient(top, #FFFFFF 0%, #ddd 100%);' +
+                        'background-image: -moz-linear-gradient(top, #FFFFFF 0%, #ddd 100%);' +
+                        'background-image: -o-linear-gradient(top, #FFFFFF 0%, #ddd 100%);' +
+                        'background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #ddd));' +
+             
+                        'background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #ddd 100%);' +
+                        'background-image: linear-gradient(to bottom, #FFFFFF 0%, #ddd 100%);' +
+                        'background-color: #fff; padding:2px;' +
+                        'box-shadow: 0 3px 14px rgba(0, 0, 0, 0.5);">' + encodeHTML(e.data['_name']) + '</div>');
+            this.label['setPosition'](e['lnglat']);
+            this.label['setMap'](this.options['map']); 
+        }
+    ); 
+    AMap.event.addListener(yuntuLayer, "click", function(e){
+        var data = e.data;
+        var location = data._location;
+        var mapZoom = mapObj.getZoom();
+
+        var clickedMapPixel = mapObj.lngLatToContainer(location, mapZoom);
+        var halfInfoWindowHeight = 278/2;
+        var newMapCenterPixel = new AMap.Pixel(clickedMapPixel.getX(), clickedMapPixel.getY() - halfInfoWindowHeight);
+
+        var newMapCenter = mapObj.containerToLngLat(newMapCenterPixel, mapZoom);
+
+        fnLoadInfoWindowHtml(data);
+
+        mapObj.setCenter(newMapCenter);
+        if(!clickedMarker){
+            clickedMarker = new AMap.Marker({map:mapObj, content:'<div class="yuntuMarker"></div>', offset: new AMap.Pixel(-13,-41) });
+            AMap.event.addListener(clickedMarker, "click", function(e){
+                markerInfoWindow.open(mapObj, this.getPosition());
+            })
+        }
+
+        clickedMarker.setPosition(location);
+        markerInfoWindow.open(mapObj, location);
+
+        geocoderPlugin.getAddress(location);
+    });
+
+    geocoderPlugin = new AMap.Geocoder({radius: 2000});
+    AMap.event.addListener(geocoderPlugin, 'complete', function (geocoderResult) {
+        regeocode = geocoderResult.regeocode;
+    });
+});
+
+/**
+ * Created by guoqian on 2015/11/10
+ * m-map.js
+ */
+
+// init mapObj function
+AMap.event.addListener(mapObj, 'zoomchange', function (e){
+    var zoom = mapObj.getZoom();
+    var zoomIn = $mapHolder.find('.zoom-in');
+    var zoomOut = $mapHolder.find('.zoom-out');
+    // [3,19]
+    // 由于地图级别是可缩放的，不是固定一个级别，所以，if，elseif，else 即可；
+    if (zoom >= 19) {
+        zoomIn.addClass('zoom-inDisabled');
+    }
+    else if (zoom <= 3) {
+        zoomOut.addClass('zoom-outDisabled');
+    }
+    else {
+        zoomIn.removeClass('zoom-inDisabled');
+        zoomOut.removeClass('zoom-outDisabled');
+    }
+});
+
+    
+
+//init map tools function
+$("#mapTools").on("click", function(e){
+    var className = e.target.className;
+    // 地图工具栏缩放操作；
+    if (/Disabled/.test(className)) {
+        return;    
+    }else if (/zoom-in/.test(className)) {
+        // 放大地图，手动调用，NOTE：会触发zoomchange事件
+        mapObj.zoomIn();
+    }else if (/zoom-out/.test(className)) {
+        mapObj.zoomOut();
+    }
+
+});
+
+
+
+
+
+
+/**
+ * Created by guofang.zhang on 2014/10/20.
+ */
+;
+(function($) {
+    function Gallery($root) {
+        this.init($root);
+    };
+
+    function fnGalleryClose() {
+        var $root = this.$root;
+        $root.find(".imgsList").empty();
+        $root.addClass("hide");
+        Gallery.$bg.addClass("hide");
+    };
+
+    function fnGalleryPreItem() {
+        var that = this,
+            $root = that.$root;
+        var oldIndex = $root.data("galleryIndex");
+        if (oldIndex > 0) {
+            fnGallerySpecialItem.call(that, oldIndex - 1);
+        }
+    }
+
+    function fnGalleryNextItem() {
+        var that = this,
+            $root = that.$root;
+        var oldIndex = $root.data("galleryIndex");
+        var srcs = $root.data("gallerySrcs");
+        if (oldIndex < srcs.length - 1) {
+            fnGallerySpecialItem.call(that, oldIndex + 1);
+        }
+    }
+
+    function fnGallerySpecialItem(index, noAnimate) {
+        index = index || 0;
+        var bigWidth = 830; // 原来870，后来调整调小
+        var endLeft = -1 * bigWidth * index;
+        var smallWidth = 140,
+            showNumber = 6;
+        var $root = this.$root;
+        var $list = $root.data("galleryIndex", index).find(".imgsList");
+        var srcs = $root.data("gallerySrcs");
+        var $imgsGallery = $root.find(".imgsGallery").finish();
+        var totalNumber = srcs.length;
+        var jsImgNotLoad = "jsImgNotLoad";
+        var $imgOutItems = $imgsGallery.find("td");
+        var imgSrcObj;
+
+        function fnLoadImage($holder, imgSrcObj) {
+            var imgUrl = imgSrcObj.url || imgSrcObj._url;
+            var events = "load error";
+            var $img = $('<img alt="' + imgUrl + '"/>').on(events, function() {
+                $holder.removeClass('imgGalleryLoading');
+                $img.off(events);
+                $img = null;
+            }).attr("src", imgUrl);
+            $holder.removeClass(jsImgNotLoad).html($img);
+        };
+
+        var $imgNow = $imgOutItems.eq(index),
+            $imgPre, $imgNext;
+        //if(!$imgNow.find("img").length){
+        if ($imgNow.hasClass(jsImgNotLoad)) {
+            fnLoadImage($imgNow, srcs[index]);
+            //$imgNow.html('<img src="' +  (srcs[index].url||srcs[index]._url) + '"/>');
+        }
+        if (index > 0) {
+            $imgPre = $imgOutItems.eq(index - 1);
+            if ($imgPre.hasClass(jsImgNotLoad)) {
+                fnLoadImage($imgPre, srcs[index - 1]);
+                //imgSrcObj = srcs[index - 1];
+                //$imgPre.html('<img src="' +  (srcs[index - 1].url||srcs[index - 1]._url) + '"/>');
+            }
+
+        }
+        if (index < totalNumber - 1) {
+            $imgNext = $imgOutItems.eq(index + 1);
+            if ($imgNext.hasClass(jsImgNotLoad)) {
+                fnLoadImage($imgNext, srcs[index + 1]);
+                //$imgNext.html('<img src="' +  (srcs[index + 1].url||srcs[index + 1]._url) + '"/>');
+            }
+        }
+
+
+        if (totalNumber > showNumber) {
+
+            var needLeft = 0;
+            if (index < showNumber - 2) {
+                needLeft = 0;
+            } else if (index >= totalNumber - 4) {
+                needLeft = (totalNumber - showNumber) * smallWidth;
+            } else {
+                needLeft = (index - 3) * smallWidth;
+            }
+            $list.animate({
+                left: -1 * needLeft
+            }, 600);
+        }
+
+        if (noAnimate) {
+            $imgsGallery.css("left", endLeft);
+            //$root.find(".imgsGallery").animate({left: -1 * bigWidth * index}, 1 * 1000);
+        } else {
+            $imgsGallery.animate({
+                left: endLeft
+            }, 1 * 1000);
+        }
+        //$root.find(".imgsGallery").animate({left: -1 * bigWidth * index}, 1 * 1000);
+
+        $list.find(".selected").removeClass("selected");
+        $list.find("img").eq(index).addClass("selected");
+
+        $root.find(".imgsBtnPre").css("display", index == 0 ? 'none' : "block");
+        $root.find(".imgsBtnNext").css("display", index == totalNumber - 1 ? 'none' : "block");
+        //            $root.data("galleryIndex", index);
+    }
+
+    function fnResetGallerySize($root) {
+        var imgMainHeight = 420,
+            galleryMarginTop = -294;
+        var top = "50%";
+        var bodyHeight = $("body").height();
+        var minGalleryHeight = Math.max(bodyHeight, 430); //14，为右上角关闭按钮大小；
+
+        var galleryPadding = 16,
+            imgThumbHeight = 118,
+            minHeight;
+
+        if (bodyHeight < 586) {
+            imgMainHeight = minGalleryHeight - (16 * 2 + 118 + 15); 
+            top = 0;
+            galleryMarginTop = 0;
+            $root.find("td").css("height", imgMainHeight);
+        }
+        $root.find(".imgsMain").css("height", imgMainHeight);
+        $root.css({
+            top: top,
+            marginTop: galleryMarginTop
+        });
+
+    }
+
+    Gallery.prototype = {
+        init: function($root, srcs, index) {
+            var that = this;
+            that.$root = $root;
+            $root.addClass("imgsOuter").html('<a href="javascript:;" class="imgsCloseIcon"></a><div class="imgs"><div class="imgsMain"><div class="imgsGallery"><table><tbody><tr><td></td></tr></tbody></table></div><div class="imgsBtns"><a class="imgsBtnPre" href="javascript:;"><span class="imgsBtnPreSpan"></span></a><a class="imgsBtnNext" href="javascript:;"><span class="imgsBtnNextSpan"></span></a></div></div><div class="imgsListGallery"><div class="imgsList"></div></div></div>');
+            $root.on("click", ".imgsCloseIcon", $.proxy(fnGalleryClose, that));
+            $root.on("click", ".imgsBtnPre", $.proxy(fnGalleryPreItem, that));
+            $root.on("click", ".imgsBtnNext", $.proxy(fnGalleryNextItem, that));
+            $root.on("click", ".imgsListImg", function(e) {
+                var index = $(this).data("index");
+                fnGallerySpecialItem.call(that, index);
+            });
+        },
+        loadImages: function(srcs) {
+            var that = this;
+            var i = 0,
+                len = srcs.length,
+                gallery = '',
+                list = '';
+            var $root = that.$root;
+            var $bg = Gallery.$bg;
+            for (; i < len; i++) {
+                gallery += '<td class="imgGalleryLoading jsImgNotLoad"></td>'; // <img src="' +  (srcs[i].url||srcs[i]._url) + '"/>
+                list += '<a class="imgsListImg" href="javascript:;" data-index="' + i + '"><img src="' + (srcs[i].preUrl || srcs[i]._preurl) + '"></a>';
+            }
+            $root.data("gallerySrcs", srcs).find(".imgsGallery").css("left", 0).find("tr").html(gallery);
+            fnResetGallerySize($root);
+            $root.removeClass("hide").find(".imgsList").css("left", 0).html(list);
+            if (!$bg) {
+                $bg = $(".modal-backdrop");
+                if (!$bg.length) {
+                    $bg = $('<div class="modal-backdrop"></div>').appendTo('body');
+                } else {
+                    $bg = $bg.eq(0);
+                }
+
+                Gallery.$bg = $bg;
+            }
+            $bg.removeClass("hide");
+            //            that.specialItem(defaultSelectedIndex);
+        },
+        preItem: fnGalleryPreItem,
+        nextItem: fnGalleryNextItem,
+        specialItem: fnGallerySpecialItem,
+        close: fnGalleryClose
+    };
+
+    $.fn.gallery = function(srcs, index) {
+        var gallery = this.data("gallery");
+        if (!gallery) {
+            gallery = new Gallery(this);
+            this.data("gallery", gallery);
+        }
+        gallery.loadImages(srcs);
+        gallery.specialItem(index, true);
+    };
+
+
+})($);
+
+
+/*var $qrCode = $(".QRCode");
+
+$qrCode.attr("src", "/api/qr?v=1&cid=1&content=" + encodeURIComponent($qrCode.attr("alt")));
+
+
+})(window, jQuery, document, tableId, tableKey, navigator);*/

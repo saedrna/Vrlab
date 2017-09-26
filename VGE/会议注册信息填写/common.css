@@ -1,0 +1,160 @@
+html, body {
+    font-family: PingFang SC, Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, STHeiti, \\534E\6587\7EC6\9ED1, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/*a:hover, a:visited, a:focus, a:-webkit-any-link {
+    text-decoration: none;
+    color: #333;
+}*/
+
+img {
+    max-width: 100%;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tableBox {
+    display: table;
+    width: 100%;
+    height: inherit;
+}
+
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*container*/
+.container {
+    width: 960px;
+}
+
+/*relative*/
+
+.relative {
+    position: relative;
+}
+
+/*LRL-control*/
+.LRL-control {
+    position: absolute;
+    height: 56px;
+    line-height: 56px;
+    top: 0;
+    right: 10px;
+    color: #fff;
+}
+
+.LRL-control > a {
+    color: #fff;
+    cursor: pointer;
+}
+
+.icon-login {
+    background: url(../images/login.png) no-repeat;
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 0 2px -2px 0;
+}
+
+/*nav*/
+.icon-logo {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.nav {
+    width: 100%;
+    height: 56px;
+    background-color: rgba(5, 73, 116, 0.7);
+    position: fixed;
+    z-index: 99;
+}
+
+.nav > .container {
+    height: inherit;
+}
+
+.nav > .container > .logo,
+.nav > .container > .rightMenu {
+    height: inherit;
+    line-height: 55px;
+    display: inline-block;
+}
+
+.logo > a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    width: 160px;
+    height: inherit;
+}
+
+.rightMenu {
+    float: right;
+}
+
+.rightMenu > ul {
+    list-style: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.rightMenu > ul > li {
+    float: left;
+    width: 80px;
+    text-align: center;
+}
+
+.rightMenu > ul > li > a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+.rightMenu > ul > li.active {
+    height: 64px;
+    line-height: 64px;
+    background-color: rgba(10, 60, 91, 1);
+}
+
+.rightMenu > ul > li:hover {
+    height: 64px;
+    line-height: 64px;
+    background-color: rgba(10, 60, 91, 1);
+}
+
+@media (max-width: 1200px) {
+    .LRL-control {
+        display: none;
+    }
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    background-color: rgba(11, 93, 141, 1);
+    padding: 16px;
+}
+
+.copyright > span {
+    color: #fff;
+}
+

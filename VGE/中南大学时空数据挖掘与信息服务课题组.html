@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://www.geodatamining.net/home/Meeting/minutes/nav_id/12/id/14.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- default-head -->
+    
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<title>中南大学时空数据挖掘与信息服务课题组</title>
+<!--Bootstrap-->
+<link type="text/css" href="./中南大学时空数据挖掘与信息服务课题组_files/bootstrap.min.css" rel="stylesheet">
+<!--Common-->
+<link type="text/css" href="./中南大学时空数据挖掘与信息服务课题组_files/common.css" rel="stylesheet">
+<link rel="shortcut icon" href="http://www.geodatamining.net/static/zhongnan.png">
+<link rel="icon" type="image/gif" href="http://www.geodatamining.net/static/animated_favicon1.gif">
+
+    <!--minutes.css-->
+    <link type="text/css" href="./中南大学时空数据挖掘与信息服务课题组_files/minutes.css" rel="stylesheet">
+    <!-- Mobile -->
+    <link type="text/css" href="./中南大学时空数据挖掘与信息服务课题组_files/bootstrap-datepicker3.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./中南大学时空数据挖掘与信息服务课题组_files/layer.css" id="layui_layer_skinlayercss" style=""></head>
+
+<body>
+
+<!-- default-nav -->
+<div class="nav">
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="http://www.geodatamining.net/index.html" target="_blank">
+                <div class="icon-logo" style="background-image: url(/uploads/20170421/8f563553fa91e02800050b1815c0acae.png);"></div>
+                <!--<img src="/uploads/20170421/8f563553fa91e02800050b1815c0acae.png" width=100% height=100% />-->
+            </a>
+        </div>
+        <!-- Menu -->
+        <div class="rightMenu">
+            <ul>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Index/index/nav_id/2.html">首页</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Message/message/nav_id/4.html">团队成员</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Project/project/nav_id/5.html">科研项目</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Paper/paper/nav_id/6.html">论文</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Work/work/nav_id/13.html">著作</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Honor/honor/nav_id/7.html">获奖/荣誉</a>
+                </li>
+                                <li>
+                <a href="http://www.geodatamining.net/home/Resources/resources/nav_id/11.html">资源</a>
+                </li>
+                                <li class="active">
+                <a href="http://www.geodatamining.net/home/Meeting/meeting/nav_id/12.html">GIS年会</a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <!-- Login/Register/Language -->
+    <div class="LRL-control">
+        <a><i class="icon-login"></i></a>
+        <!--<img src="/static/style/images/login.png" width=15 height=15 />-->
+                <a href="http://www.geodatamining.net/home/Login/login.html">登录</a> |
+        <a href="http://www.geodatamining.net/home/Login/register.html">注册</a> |
+                <a id="yuyan1" value="english">English</a> |
+        <a id="yuyan2" value="chese">中文</a>
+    </div>
+</div>
+
+<div class="banner">
+    <a href="http://www.geodatamining.net/home/Meeting/minutes/nav_id/12/id/14.html#">
+        <img src="./中南大学时空数据挖掘与信息服务课题组_files/f9069aa027a7dfaf170ec30e1d8dae43.jpg">
+    </a>
+</div>
+
+
+<div class="container">
+    <!--minutes-->
+    <div class="minutesContent">
+        <div class="title">
+            <h4>会议注册</h4>
+        </div>
+
+        <div>
+            <div class="minutes-group-list">
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>姓名</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="请输入您的姓名">
+                    </div>
+                </div>
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>单位</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="company" placeholder="请输入单位">
+                    </div>
+                </div>
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>性别</span>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="sex">
+                            <option value="" selected="" disabled="">请选择</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>身份</span>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="identity" onchange="position(this)">
+                            <option value="" selected="" disabled="">请选择</option>
+                            <option value="1" data-name="jiaoShi">教师或科研人员</option>
+                            <option value="2" data-name="xueSheng">学生</option>
+                            <option value="3" data-name="qiTa">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="row row-bottom feiXueSheng" hidden="">
+                    <div class="col-md-2 col-control">
+                        <span>职务</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="post" placeholder="请输入您的职务">
+                    </div>
+                </div>
+
+                <div class="row row-bottom feiXueSheng" hidden="">
+                    <div class="col-md-2 col-control">
+                        <span>职称</span>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="title">
+                            <option value="" selected="" disabled="">请选择</option>
+                            <option value="1">教授</option>
+                            <option value="2">副教授</option>
+                            <option value="3">研究员</option>
+                            <option value="4">副研究员</option>
+                            <option value="5">助理研究员</option>
+                            <option value="6">讲师</option>
+                            <option value="7">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-bottom xueSheng" hidden="">
+                    <div class="col-md-2 col-control">
+                        <span></span>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="education">
+                            <option value="" selected="" disabled="">请选择</option>
+                            <option value="1">博士研究生</option>
+                            <option value="2">硕士研究生</option>
+                            <!--<option value="3">研究生</option>-->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>手机号码</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="mobile" placeholder="请输入手机号码">
+                    </div>
+                </div>
+
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>E-mail</span>
+                    </div>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control" name="email" placeholder="请输入E-mail">
+                    </div>
+                </div>
+
+
+                <div class="row row-bottom" hidden="" id="regMoney">
+                    <div class="col-md-2 col-control">
+                        <span>注册费用</span>
+                    </div>
+                    <div class="col-md-10">
+                        ￥<strong class="minutesMoney money">400</strong>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning" role="alert" hidden="" id="onlinePayMsg">
+                    <div>付款时请备注姓名/费用,如:张三/800;<br>
+                        在线支付,会议现场直接领取发票；
+                    </div>
+                </div>
+
+                <div class="alert alert-warning" role="alert" hidden="" id="siteMsg">
+                    <div>现场支付，（发票）会后统一邮寄。</div>
+                </div>
+
+                <div class="row row-bottom">
+                    <div class="col-md-2 col-control">
+                        <span>支付方式</span>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="method" onchange="payWay(this)">
+                            <option value="" selected="" disabled="">请选择</option>
+                            <option value="2" data-way="zaiXian">在线支付(推荐)</option>
+                            <option value="1" data-way="daoChang">到场支付</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-bottom" hidden="" id="code">
+                    <div class="col-md-2 col-control">
+                        <span>微信二维码</span>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="mobile-form-title"></div>
+                        <div class="codeControl text-center">
+                            <img src="./中南大学时空数据挖掘与信息服务课题组_files/400cost.png" alt="" id="moneyImg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="checkbox" onchange="isInvoice(this)" name="is_invoice" value="1">&nbsp;是否开具发票
+                    </div>
+                </div>
+
+                <div id="invoice" hidden="">
+                    <div class="row row-bottom">
+                        <div class="col-md-2 col-control">
+                            <span>发票抬头</span>
+                        </div>
+                        <div class="col-md-10">
+                            <select class="form-control" name="invoice_title" onchange="invoiceWay(this)">
+                                <option value="" selected="" disabled="">请选择</option>
+                                <option value="1" data-info="geRen">个人</option>
+                                <option value="2" data-info="danWei">单位</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row row-bottom danWei" hidden="">
+                        <div class="col-md-2 col-control">
+                            <span>抬头单位</span>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control " name="up_unit" placeholder="必填">
+                        </div>
+                    </div>
+
+
+                    <div class="row row-bottom danWei" hidden="">
+                        <div class="col-md-2 col-control">
+                            <span>纳税人识别号</span>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control " name="ratepayer_num" placeholder="必填">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <input type="checkbox" onchange="isStay(this)" name="accommodation" value="1">&nbsp;是否住宿
+                    </div>
+                </div>
+
+                <div id="stay" hidden="">
+                    <div class="alert alert-warning" role="alert">
+                        <div>为便于会务组准确统计住宿需求，请您协助完成您个人的住宿需求！</div>
+                    </div>
+
+
+                    <div class="row row-bottom">
+                        <div class="col-md-2 col-control">
+                            <span>时间（入住）</span>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="timeState" name="accommodation_start" value="2017-11-17" readonly="">
+                        </div>
+                    </div>
+
+
+                    <div class="row row-bottom">
+                        <div class="col-md-2 col-control">
+                            <span>时间（退房）</span>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="timeEnd" name="accommodation_end" value="2017-11-19" readonly="">
+                        </div>
+                    </div>
+
+
+                    <div class="row row-bottom">
+                        <div class="col-md-2 col-control">
+                            <span>房间类型</span>
+                        </div>
+                        <div class="col-md-10">
+                            <select class="form-control" name="room_type">
+                                <option value="" selected="" disabled="">请选择</option>
+                                <option value="1">单间</option>
+                                <option value="2">双间（不合住）</option>
+                                <option value="3">双间（可合住）</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="minutesBtn text-center">
+                <button class="btn" id="btn" onclick="submit(this)">提交</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--版权信息-->
+<div class="copyright">
+    <span>Copyright©2015-2020 中南大学 版权所有湘ICP备15015131号-2 Powered by <a href="http://www.igeekspace.com/" target="_blank" style="color:#fff">尖塔科技</a></span>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260432871'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260432871%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1260432871"><a href="http://www.cnzz.com/stat/website.php?web_id=1260432871" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./中南大学时空数据挖掘与信息服务课题组_files/pic.gif"></a></span><script src="./中南大学时空数据挖掘与信息服务课题组_files/z_stat.php" type="text/javascript"></script><script src="./中南大学时空数据挖掘与信息服务课题组_files/core.php" charset="utf-8" type="text/javascript"></script>
+</div>
+<!--jquery-2.1.4.min.js-->
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/jquery-2.1.4.min.js.下载"></script>
+<!--Bootstrap-->
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/bootstrap.min.js.下载"></script>
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/layer.js.下载"></script>
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/Validform.min.js.下载"></script>
+
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/bootstrap-datepicker.min.js.下载"></script>
+<script type="text/javascript" src="./中南大学时空数据挖掘与信息服务课题组_files/bootstrap-datepicker.zh-CN.min.js.下载"></script>
+<script>
+    $("#timeState").datepicker({
+        language: "zh-CN",
+        autoclose: true,//选中之后自动隐藏日期选择框
+        format: "yyyy-mm-dd"
+    })
+
+    $("#timeEnd").datepicker({
+        language: "zh-CN",
+        autoclose: true,//选中之后自动隐藏日期选择框
+        format: "yyyy-mm-dd"
+    })
+
+
+    function submit(obj){
+        $(obj).attr('disabled',true);
+        let data ={};
+        data['name'] = $("input[name='name']").val();
+        if(!data['name']){
+            alert("名称必填");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        data['company'] = $("input[name='company']").val();
+        if(!data['company']){
+            alert("单位必填");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        data['sex'] = $("select[name='sex']").val();
+        if(!data['sex']){
+            alert("性别必选");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        data['identity'] = parseInt($("select[name='identity']").val());
+        if(!data['identity']){
+            alert("身份必选");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        switch (data['identity']){
+            case 1:
+                data['post'] = $("input[name='post']").val();
+                data['title'] = $("select[name='title']").val();
+                break;
+            case 2:
+                data['education'] = $("select[name='education']").val();
+                break;
+            case 3:
+                data['post'] = $("input[name='post']").val();
+                data['title'] = $("select[name='title']").val();
+                break;
+        }
+        data['mobile'] = $("input[name='mobile']").val();
+        if(!data['mobile']){
+            alert("手机必填");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        data['email'] = $("input[name='email']").val();
+        if(!data['email']){
+            alert("emaiil必填");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        data['method'] = $("select[name='method']").val();
+        if(!data['method']){
+            alert("支付方式必选");
+            $(obj).attr('disabled',false);
+            return false;
+        }
+        if($("input[name='is_invoice']").is(":checked")){
+            data['is_invoice'] = $("input[name='is_invoice']").val();
+            data['invoice_title'] = parseInt($("select[name='invoice_title']").val());
+            if(data['invoice_title'] == 2){
+                data['up_unit'] = $("input[name='up_unit']").val();
+                data['ratepayer_num'] = $("input[name='ratepayer_num']").val();
+            }
+        }else {
+            data['is_invoice'] = 2;
+        }
+
+        if($("input[name='accommodation']").is(":checked")){
+            data['accommodation'] = 1;
+            data['accommodation_start'] = $("input[name='accommodation_start']").val();
+            data['accommodation_end'] = $("input[name='accommodation_end']").val();
+            data['room_type'] = $("select[name='room_type']").val();
+        }else {
+            data['accommodation'] = 2;
+        }
+
+
+        $.post("/home/Mobile/meetingReg",{data:data},function(rJson){
+            $(obj).attr('disabled',false);
+            alert(rJson.info);
+            if(rJson.success){
+                location.href="/meeting";
+            }
+        })
+    }
+
+
+    var jiaoShiMoney = 800;
+    var jiaoShiImg = "/static/style/images/800cost.png";
+    var xueShengMoney = 400;
+    var xueShengImg = "/static/style/images/400cost.png";
+
+    function position(obj){
+        let position = $(obj).find("option:selected").data('name');
+
+        switch (position){
+            case "jiaoShi" :
+                $('.xueSheng').hide();
+                $('.feiXueSheng').show();
+                $('.money').text(jiaoShiMoney);
+                $('#moneyImg').attr('src',jiaoShiImg);
+                $('#regMoney').show();
+                break;
+            case "xueSheng" :
+                $('.xueSheng').show();
+                $('.feiXueSheng').hide();
+                $('.money').text(xueShengMoney);
+                $('#moneyImg').attr('src',xueShengImg);
+                $('#regMoney').show();
+                break;
+            case "qiTa" :
+                $('.xueSheng').hide();
+                $('.feiXueSheng').show();
+                $('.money').text(jiaoShiMoney);
+                $('#moneyImg').attr('src',jiaoShiImg);
+                $('#regMoney').show();
+                break;
+        }
+    }
+
+    function payWay(obj){
+        let way = $(obj).find("option:selected").data("way");
+
+        switch (way){
+            case "zaiXian":
+                $('#onlinePayMsg').show();
+                $('#siteMsg').hide();
+                $('#code').show();
+                break;
+            case "daoChang":
+                $('#onlinePayMsg').hide();
+                $('#siteMsg').show();
+                $('#code').hide();
+                break;
+        }
+    }
+
+    function isInvoice(obj){
+        if($(obj).is(":checked")){
+            $('#invoice').show();
+        }else {
+            $('#invoice').hide();
+        }
+    }
+
+    function invoiceWay(obj){
+        let info = $(obj).find("option:selected").data("info");
+
+        switch (info){
+            case "geRen":
+                $('.danWei').hide();
+                break;
+            case "danWei":
+                $('.danWei').show();
+                break;
+        }
+    }
+
+    function isStay(obj){
+        if($(obj).is(":checked")){
+            $('#stay').show();
+        }else {
+            $('#stay').hide();
+        }
+    }
+</script>
+
+</body></html>

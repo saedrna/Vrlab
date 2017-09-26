@@ -1,0 +1,72 @@
+/* ::::: http://www.lmars.whu.edu.cn/lidar/static/css/css.css ::::: */
+
+body { margin: 0px; height: 100%; background-repeat: no-repeat; background-position: center top; background-attachment: scroll; }
+.xiadaoh { height: 770px; width: 224px; border: 1px solid rgb(204, 204, 204); float: left; margin-left: 15px; margin-top: 10px; }
+.wenzi { font-family: "微软雅黑"; font-size: 16px; color: rgb(123, 0, 0); font-weight: bold; }
+.y1-2 { height: 210px; width: 240px; margin-right: auto; margin-left: auto; }
+.y1-3 { font-size: 12px; color: rgb(51, 51, 51); float: none; width: 255px; margin-right: auto; margin-left: auto; line-height: 20px; }
+.y1-4 { font-size: 12px; color: rgb(51, 51, 51); float: none; width: 174px; margin-right: auto; line-height: 20px; margin-top: 10px; margin-bottom: 10px; }
+.y1-5 { font-size: 12px; color: rgb(51, 51, 51); float: none; width: 245px; margin-right: auto; height: 260px; max-height: 250px; overflow-y: auto; overflow-x: hidden; line-height: 20px; margin-top: 10px; margin-bottom: 10px; }
+.y1-6 { font-size: 12px; color: rgb(51, 51, 51); float: none; width: 174px; margin: 10px auto 10px 10px; height: 50px; line-height: 20px; text-align: center; }
+.y0-1 { background-image: url('01-5.jpg'); background-repeat: no-repeat; height: 28px; width: 245px; margin-right: auto; margin-bottom: 8px; margin-left: auto; }
+.y0-879 { background-image: url('01-9.jpg'); background-repeat: no-repeat; height: 28px; width: 213px; margin: 20px auto 8px; }
+.xiayou { float: left; height: 770px; width: 250px; margin-top: 10px; margin-right: 10px; }
+.xiazhong { height: 770px; width: 482px; float: left; margin: 10px 23px 0px; }
+.xia-01 { height: 787px; width: 1051px; margin-right: auto; margin-left: auto; }
+.zuo { float: left; height: 787px; width: 11px; }
+.xia { height: 940px; width: 100%; margin-right: 0px; margin-left: 0px; }
+.dhd { height: 40px; width: 100%; }
+.tou { height: 80px; width: 1029px; margin: 10px auto 20px; }
+.dh { width: 1029px; margin-right: auto; margin-left: auto; height: 40px; }
+.dhg { float: left; height: 13px; width: 7px; margin-right: 5px; margin-left: 5px; margin-top: 7px; }
+.pp8 { text-align: center; width: 150px; float: left; font-size: 12px; font-weight: normal; text-transform: none; color: rgb(51, 51, 51); margin-right: 0px; margin-left: 0px; }
+.pp8 a { display: block; width: 150px; padding-top: 5px; background-position: center center; font-size: 14px; color: rgb(51, 51, 51); text-decoration: none; height: 20px; font-family: "微软雅黑"; font-weight: bold; padding-bottom: 5px; }
+.pp8 a:hover { background-color: rgb(13, 38, 78); font-size: 14px; color: rgb(255, 255, 255); text-decoration: none; font-family: "微软雅黑"; }
+.xiaz-1 { float: none; width: 471px; margin-right: auto; margin-left: auto; height: 22px; margin-bottom: 10px; }
+.xiaz-2 { float: left; height: 20px; width: 56px; font-family: "微软雅黑"; font-size: 16px; color: rgb(123, 0, 0); font-weight: bold; }
+.xiaz-99 { float: left; height: 20px; width: 140px; font-family: "微软雅黑"; font-size: 16px; color: rgb(123, 0, 0); font-weight: bold; }
+.xiaz-3 { background-image: url('01-3.jpg'); float: left; height: 22px; width: 415px; }
+.xiaz-88 { background-image: url('01-4.jpg'); float: left; height: 22px; width: 314px; margin-left: 15px; }
+.xiaz-4 { border-bottom: 1px dashed rgb(153, 153, 153); height: 40px; width: 460px; margin: 8px auto; }
+.xiaz-5 { float: left; height: 11px; width: 5px; margin-left: 0px; margin-top: 10px; margin-right: 10px; }
+.xiaz-6 { float: left; height: 20px; width: 400px; margin-top: 5px; }
+.xiaz-8-4 { height: 484px; width: 468px; margin-right: auto; margin-left: auto; border: 1px solid rgb(204, 204, 204); font-size: 14px; padding: 5px; line-height: 20px; }
+.didibu { background-color: rgb(16, 47, 93); height: 150px; width: 100%; }
+.dibu-1 { font-size: 14px; color: rgb(255, 255, 255); height: 50px; width: 1000px; margin-right: auto; margin-left: auto; padding-top: 70px; text-align: center; }
+.zdao { height: 32px; width: 211px; margin-right: auto; margin-left: auto; border-bottom: 1px dashed rgb(204, 204, 204); margin-top: 5px; }
+.zdao-1 { height: 30px; width: 211px; }
+.zdao-1 a { display: block; width: 211px; padding-top: 5px; font-size: 14px; color: rgb(51, 51, 51); text-decoration: none; height: 20px; font-family: "微软雅黑"; font-weight: bold; padding-bottom: 5px; background-image: url('2.gif'); background-repeat: no-repeat; background-position: center center; }
+.zdao-1 a:hover { background-image: url('1.gif'); background-repeat: no-repeat; background-position: center center; font-size: 14px; color: rgb(255, 255, 255); text-decoration: none; font-family: "微软雅黑"; }
+.zdaox-89 { height: 300px; width: 195px; margin-right: auto; margin-left: auto; margin-top: 20px; overflow-y: auto; overflow-x: hidden; max-height: 600px; }
+.tianshu { background-color: rgb(16, 47, 93); height: 60px; width: 100%; }
+.tianshu-1 { font-size: 14px; color: rgb(255, 255, 255); height: 80px; width: 100%; margin-right: auto; margin-left: auto; padding-top: 5px; text-align: center; line-height: 25px; }
+/* ::::: http://www.lmars.whu.edu.cn/lidar/static/css/lrtk.css ::::: */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td { margin: 0px; padding: 0px; }
+body { background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(85, 85, 85); font-size: 14px; font-family: Verdana,Arial,Helvetica,sans-serif; }
+td, th, caption { font-size: 12px; }
+a { color: rgb(85, 85, 85); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { border: medium none; }
+table { border-collapse: collapse; }
+html { overflow-y: scroll; }
+.clearfix::after { content: "."; display: block; height: 0px; clear: both; visibility: hidden; }
+/* ::::: http://www.lmars.whu.edu.cn/lidar/static/css/nivo-slider.css ::::: */
+
+.nivoSlider { position: relative; width: 100%; height: auto; overflow: hidden; }
+.nivoSlider img { position: absolute; top: 0px; left: 0px; max-width: none; }
+.nivo-main-image { display: block !important; position: relative !important; width: 100% !important; }
+.nivo-caption { position: absolute; left: 0px; bottom: 0px; background: rgb(0, 0, 0) none repeat scroll 0% 0%; color: rgb(255, 255, 255); width: 100%; z-index: 8; padding: 5px 10px; opacity: 0.8; overflow: hidden; display: none; box-sizing: border-box; }
+.nivo-directionNav a { position: absolute; top: 45%; z-index: 9; cursor: pointer; }
+.nivo-prevNav { left: 0px; }
+.nivo-nextNav { right: 0px; }
+/* ::::: http://www.lmars.whu.edu.cn/lidar/static/css/default.css ::::: */
+
+.theme-default .nivoSlider { position: relative; background: rgb(255, 255, 255) url('loading.gif') no-repeat scroll 50% 50%; margin-bottom: 10px; box-shadow: 0px 1px 5px 0px rgb(74, 74, 74); }
+.theme-default .nivoSlider img { position: absolute; top: 0px; left: 0px; display: none; }
+.theme-default .nivoSlider a { border: 0px none; display: block; }
+.theme-default .nivo-directionNav a { display: block; width: 30px; height: 30px; background: rgba(0, 0, 0, 0) url('arrows.png') no-repeat scroll 0% 0%; text-indent: -9999px; border: 0px none; opacity: 0; transition: all 200ms ease-in-out 0s; }
+.theme-default:hover .nivo-directionNav a { opacity: 1; }
+.theme-default a.nivo-nextNav { background-position: -30px 0px; right: 15px; }
+.theme-default a.nivo-prevNav { left: 15px; }
+.theme-default .nivo-caption { font-family: Helvetica,Arial,sans-serif; }
