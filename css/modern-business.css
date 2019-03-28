@@ -23,7 +23,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-size: 16px;
-    font-family: "Arial","Microsoft YaHei" ,sans-serif;
+    font-family: "Arial",source-han-sans-simplified-c ,sans-serif;
     font-weight: 400;
 }
 
@@ -250,7 +250,7 @@ ul.grid li .comein i {
 ul.grid li .comein-bg {
     -khtml-opacity: .70;
     -moz-opacity: .70;
-    -ms-filter: ¡±alpha(opacity=70)¡±;
+    -ms-filter: ï¿½ï¿½alpha(opacity=70)ï¿½ï¿½;
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.7);
     filter: alpha(opacity=70);
     opacity: .70;

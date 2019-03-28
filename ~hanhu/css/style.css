@@ -41,7 +41,7 @@ a,a:hover,a:focus {
 }
 
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
-	font-family: "Microsoft Yahei", "Lato", Helvetica, Arial, sans-serif;
+	font-family: source-han-sans-simplified-c, "Lato", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
 

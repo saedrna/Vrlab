@@ -30,7 +30,7 @@
 
 body {
 	font-size: 16px;
-	font-family: "Arial","Microsoft YaHei" ,sans-serif;
+	font-family: "Arial",source-han-sans-simplified-c ,sans-serif;
 	font-weight: 400;
 	background: #4D4D4D;
 }
@@ -41,7 +41,7 @@ a,a:hover,a:focus {
 }
 
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
-	font-family: "Arial","Microsoft YaHei" ,sans-serif;
+	font-family: "Arial",source-han-sans-simplified-c ,sans-serif;
 	font-weight: 300;
 }
 
@@ -1267,7 +1267,7 @@ ul.timeline .date {
   main post content
 ====================================================*/
 .post-content {
-	font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
+	font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", source-han-sans-simplified-c, sans-serif;
 	color: #444443;
 }
 .post-content h1,
@@ -1276,7 +1276,7 @@ ul.timeline .date {
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-	font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", "SimSun", sans-serif;
+	font-family: "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", source-han-sans-simplified-c, "SimSun", sans-serif;
 	color: #222223;
 }
 .post-content h1 {
