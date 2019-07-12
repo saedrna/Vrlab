@@ -154,6 +154,7 @@ xiazhong_22 {
 	margin-left: 23px;
 }
 
+
 .xia-01 {
 	height: 787px;
 	width: 1051px;
@@ -392,6 +393,18 @@ xiazhong_22 {
 	margin-bottom: 8px;
 	float: left;
 }
+.xiaz-41 {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #999999;
+	height: 1300px;
+	width: 700px;
+	margin-right: auto;
+	margin-left: 2px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	float: left;
+}
 .xiaz-5 {
 	float: left;
 	height: 11px;
@@ -405,6 +418,12 @@ xiazhong_22 {
 	height: 20px;
 	width: 600px;
 	margin-top: 5px;
+}
+.xiaz-61 {
+	float: left;
+	height: 1200px;
+	width: 600px;
+	margin-top: 25px;
 }
 .xiaz-7 {
 	float: left;
@@ -476,6 +495,9 @@ xiazhong_22 {
 	overflow-y:auto;
 	/*overflow-X:hidden;*/
 }
+
+
+
 
 
 .cnt{
