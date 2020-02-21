@@ -180,9 +180,10 @@ $(document).ready(function(){
             infinite: true,
             width: '100%',
             height: 250,
+            align: "center",
             items: {
                 visible: 3,
-                start: 1
+                start: 2
             },
             prev: '#lab_prev',
             next: '#lab_next',
