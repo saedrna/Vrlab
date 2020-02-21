@@ -320,7 +320,7 @@
                       </div>
                       <div class="circle"></div>
                       <div class="data">
-                        <div class="subject">the Second Honorable Mention for the 2016 Talbert Abrams Award</div>
+                        <div class="subject">The Second Honorable Mention for the 2016 Talbert Abrams Award</div>
                         <div class="text row">
                           <div class="col-md-12">
                             <p>The purpose of the Award is to encourage the authorship and recording of current,
@@ -401,29 +401,8 @@
             <div class="section-container">
               <h2 class="title">Research Summary</h2>
               <div class="row">
-                <div class="col-md-8">
-                  <p>Recent advances in photogrammetry, especially that of Semi-Global Matching (SGM), have raised a
-                    huge renaissance in image based modeling. Moreover through the powerful and innovated
-                    penta-view aerial oblique images, we can reconstruct the same building (object) from multiple views
-                    with details and textures on the facades. But processing this kind of dataset is a
-                    non-trivial work, compared to the traditional aerial nadir images. A lot of works have been devoted
-                    to this area, but it's still an open question and under active researches. The
-                    whole processing steps from the oblique images to the 3D models in different level-of-details (LOD)
-                    is quite complex, and to be simply said, it majorly includes some points on the
-                    right. </p>
-                </div>
-                <div class="col-md-4">
-                  <div class="subtitle text-center">
-                    <h3>Interests</h3>
-                  </div>
-                  <ul class="ul-boxed list-unstyled">
-                    <li>Feature Point Mathching</li>
-                    <li>Bundle Adjustment</li>
-                    <li>Dense Image Matching</li>
-                    <li>Point Cloud classification</li>
-                    <li>Object Extraction</li>
-                    <li>Building Reconstruction</li>
-                  </ul>
+                <div class="col-md-12">
+                  <p>I do research on image-based reconstruction, with a focus on feature matching and LOD reconstruction. Most notably, my researches have been turned into software solutions, including Planetary3D for planetary mapping that supported Chang'E-3 and Chang'E-4 mission of Chinese Lunar Exploration Programm, Link for global mapping of the planet earth that is used by all the related companies and OSketch for city-scale LOD reconstruction that is used by more than 100 companies.</p>
                 </div>
               </div>
             </div>
@@ -458,39 +437,48 @@
                         <ul class="ul-dates">
                           <li>
                             <div class="dates">
-                              <span>2021/12</span>
-                              <span>2017/01</span>
+                              <span>2022</span>
+                             
+                              <span>2019</span>
+
                             </div>
                             <div class="content">
-                              <h4>National Natural Science Foundation of China (自然科学基金青年项目)</h4>
+                              <h4>National Key R&D Program of China (国家重点研发计划子课题), <strong>PI</strong></h4>
+                              <p>Precision DEM Reconstruction using InSAR for Rapid Emergence Response</p>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="dates">
+                              <span>2021</span>
+                              <span>2017</span>
+                            </div>
+                            <div class="content">
+                              <h4>National Natural Science Foundation of China (自然科学基金青年项目), <strong>PI</strong></h4>
                               <p>A supervised metric learning approach for efficient aerial oblique image matching using
                                 neighborhood information,
-                                <strong>PI</strong>
                               </p>
                             </div>
                           </li>
                           <li>
                             <div class="dates">
-                              <span>2021/12</span>
-                              <span>2017/01</span>
+                              <span>2021</span>
+                              <span>2017</span>
                             </div>
                             <div class="content">
-                              <h4>National Natural Science Foundation of China (自然科学基金重点项目)</h4>
+                              <h4>National Natural Science Foundation of China (自然科学基金重点项目), <strong>Co-I</strong></h4>
                               <p>Theory and methods of the oblique photogrammetry for precision building reconstruction,
-                                <strong>Co-I</strong>
                               </p>
                             </div>
                           </li>
                           <li>
                             <div class="dates">
-                              <span>2018/04</span>
-                              <span>2016/11</span>
+                              <span>2018</span>
+                              <span>2016</span>
                             </div>
                             <div class="content">
                               <h4>Open Fund of Key Laboratory of Urban Land Resources Monitoring and Simulation,
-                                Ministry of Land and Resources</h4>
+                                Ministry of Land and Resources, <strong>PI</strong></h4>
                               <p>LOD reconstruction of buildings from oblique images,
-                                <strong>PI</strong>
                               </p>
                             </div>
                           </li>
@@ -559,6 +547,29 @@
                             <a href="#" class="pubcollapse">
                               <i class="fa fa-expand"></i>
                             </a>
+                            <a href="https://doi.org/10.1016/j.isprsjprs.2020.01.020" class="tooltips" title="External link"
+                              target="_blank">
+                              <i class="fa fa-external-link"></i>
+                            </a>
+                          </div>
+                          <h4 class="pubtitle">Object-based incremental registration of terrestrial point clouds in an urban environment</h4>
+                          <div class="pubauthor">X. Ge and <strong>H. Hu</strong>, 2020
+                          </div>
+                          <div class="pubcite">
+                            <span class="label label-success">Journal Papers</span>ISPRS Journal of Photogrammetry and Remote Sensing
+                          </div>
+                          <div class="pubdetails">
+                            <h4>Abstract</h4>
+                            <p>Registration of terrestrial point clouds is essential for large-scale urban applications. The robustness, accuracy, and runtime are generally given the highest priority in the design of appropriate algorithms. Most approaches that target general scenarios can only fulfill some of these factors, that is, robustness and accuracy come at the cost of increased runtime and vice versa. This paper proposes an object-based incremental registration strategy that accomplishes all of these objectives without the need for artificial targets, aiming at a specific scenario, the urban environment. The key is to decompose the degrees of freedom for the SE(3) transformation to three separate but closely related steps, considering that scanners are generally leveled in urban scenes: (1) 2D transformation with matches from line primitives, (2) vertical offset compensation by robust least-squares optimization, and (3) full SE(3) least-squares refinement using uniformly selected local patches. The robustness is prioritized in the whole pipeline, as structured first by a primitive-based registration and two least-squares optimizations with robust estimations that do not require specific keypoints. An object-based strategy for terrestrial point clouds is used to increase the reliability of the first step by the line primitives, which significantly reduces the search space without affecting the recall ratio. The least-squares optimization contributes to achieve a global optimum for the accurate registration. The three coupling steps are also more efficient than segregated coarse-to-fine registration. Experimental evaluations for point clouds acquired in both a metropolis and in old-style cities reveal that the proposed methods are superior to or on par with the state-of-the-art in robustness, accuracy, and runtime. In addition, the methods are also agnostic to the primitives adopted.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item mix 2020" data-year="2020">
+                        <div class="pubmain">
+                          <div class="pubassets">
+                            <a href="#" class="pubcollapse">
+                              <i class="fa fa-expand"></i>
+                            </a>
                             <a href="https://doi.org/10.1109/LGRS.2019.2962696" class="tooltips" title="External link"
                               target="_blank">
                               <i class="fa fa-external-link"></i>
@@ -618,7 +629,7 @@
                           </div>
                           <h4 class="pubtitle">A Multi-Primitive-Based Hierarchical Optimal Approach for Semantic
                             Labeling of ALS Point Clouds</h4>
-                          <div class="pubauthor">Ge, X., Wu, B., Li, Y., <strong>Hu, H.</strong>>, 2019.
+                          <div class="pubauthor">Ge, X., Wu, B., Li, Y., <strong>Hu, H.</strong>, 2019.
                           </div>
                           <div class="pubcite">
                             <span class="label label-success">Journal Papers</span>Remote Sensing 11 (10), 1243.
@@ -658,7 +669,7 @@
                           </div>
                           <h4 class="pubtitle">Impact cratering in and around the Orientale Basin: Results from recent
                             high-resolution remote sensing datasets</h4>
-                          <div class="pubauthor">Wu, B., Wang, Y., Lin, T.J., <strong>Hu, H.</strong>, Werner, S.C.,
+                          <div class="pubauthor">Wu, B., Wang, Y., Lin, T., <strong>Hu, H.</strong>, Werner, S.C.,
                             2019
                           </div>
                           <div class="pubcite">
@@ -733,6 +744,33 @@
                               two typical image datasets for Mars and the Moon reveal that the proposed approach
                               achieves favorable geometrical consistency. Compared with two off-the-shelf solutions, it
                               both achieves better color consistency and preserves better color contrast.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item mix 2019" data-year="2019">
+                        <div class="pubmain">
+                          <div class="pubassets">
+                            <a href="#" class="pubcollapse">
+                              <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="https://doi.org/10.5194/isprs-annals-IV-2-W5-519-2019" class="tooltips" title="External link"
+                              target="_blank">
+                              <i class="fa fa-external-link"></i>
+                            </a>
+                            <a href="paper/2019-Planetary3D a photogrammetric tool for 3d topographic mapping of planetary bodies.pdf" class="tooltips"
+                                    title="Download" target="_blank">
+                                  <i class="fa fa-cloud-download"></i>
+                            </a>
+                          </div>
+                          <h4 class="pubtitle">Planetary3D: a photogrammetric tool for 3d topographic mapping of planetary bodies</h4>
+                          <div class="pubauthor"><strong>H. Hu</strong> and B. Wu, 2019
+                          </div>
+                          <div class="pubcite">
+                            <span class="label label-warning">Conference Papers</span>ISPRS Ann. Photogramm. Remote Sens. Spatial Inf. Sci
+                          </div>
+                          <div class="pubdetails">
+                            <h4>Abstract</h4>
+                            <p>Planetary remote sensing images are the primary datasets for high-resolution topographic mapping and modeling of the planetary surfaces. However, unlike the mapping satellites for Earth observations, cameras onboard the planetary satellites generally present special imaging geometries and configurations, which makes the stereo photogrammetric process difficult and requires a large number of manual interactions. At the Hong Kong Polytechnic University, we developed a unified photogrammetric software system, namely Planetary3D, for 3D topographic mapping modeling of various planetary bodies using images collected by various sensors. Planetary3D consists of three modules, including: (1) the pre-processing module to deliver standardized image products, (2) the bundle adjustment module to alleviate the inconsistencies between the images and possibly the reference frame, and (3) the dense image matching module to create pixel-wise image matches and produce high quality topographic models. Examples of using three changeling datasets, including the MRO CTX, MRO HiRISE and Chang’E-2 images, have revealed that the automatic pipeline of Planetary3D can produce high-quality digital elevation models (DEMs) with favorable performances. Notably, the notorious jitter effects visible on HiRISE images can be effectively removed and good consistencies with the reference DEMs are found for the test datasets by the Planetary3D pipeline.</p>
                           </div>
                         </div>
                       </div>
@@ -2315,7 +2353,8 @@
                   <h4>
                     <strong>Corresponding Address:</strong>
                   </h4>
-                  <p>Prof. Han Hu
+                  <p>Han Hu
+                    <br />Professor, PhD.
                     <br />Room 6104, Faculty of Geosciences and Environmental Engineering
                     <br />Southwest Jiaotong University
                     <br />Xi'an Road, Gaoxin West District, Chengdu
@@ -2331,19 +2370,14 @@
                         <a href="mailto:han.hu@swjtu.edu.cn">han.hu@swjtu.edu.cn</a>
                       </span>
                     </li>
+                    
                     <li>
                       <strong>
-                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;
+                        <i class="fa fa-github"></i>&nbsp;&nbsp;
                       </strong>
                       <span>
-                        <a href="mailto:huhan8807@gmail.com">huhan8807@gmail.com</a>
+                        <a href="https://github.com/saedrna">github.com/saedrna</a>
                       </span>
-                    </li>
-                    <li>
-                      <strong>
-                        <i class="fa fa-weixin"></i>&nbsp;&nbsp;
-                      </strong>
-                      <span>saedrna</span>
                     </li>
                     <li>
                       <strong>
