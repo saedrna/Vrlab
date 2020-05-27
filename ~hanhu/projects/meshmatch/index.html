@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point Matching Toward Integrated 3D Reconstruction</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.typekit.net/zkg2qhu.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/56b25bd72f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="author" content="Han Hu (胡翰)">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description"
+    content="Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point Matching Toward Integrated 3D Reconstruction" />
+  <meta name="keywords"
+    content="vrlab, Han Hu, Aerial ground" />
+  <link rel="shortcut icon" href="img/icon.jpeg">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167298120-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-167298120-1');
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="https://www.vrlab.org.cn/~hanhu">Homepage</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#overview">Overview</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#abstract">Abstract</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#Match">Feature Match</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#Reconstruction">Reconstruction</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#Datasets">Datasets</a>
+          </li>
+		   <li class="nav-item active">
+            <a class="nav-link" href="#Acknowledgements">Acknowledgements</a>
+          </li>
+		   <li class="nav-item active">
+            <a class="nav-link" href="#links">Links</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <!-- Overview -->
+      <div class="container" id="overview">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1>Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point Matching Toward Integrated 3D Reconstruction</h1>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-2"><a href="https://www.vrlab.org.cn/~zhuq" target="_blank">ZHU Qing<sup>a</sup></a></div>
+          <div class="col-md-2">WANG Zhendong<sup>a</sup></div>
+          <div class="col-md-2"><a href="https://www.vrlab.org.cn/~hanhu" target="_blank">HU Han<sup>a,</sup>*</a></div>
+          <div class="col-md-2">XIE Linfu<sup>b</sup></div>
+		  <div class="col-md-2">GE Xuming<sup>a</sup></div>
+		  <div class="col-md-2">ZHANG Yeting<sup>c</sup></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <a href="https://gsee.swjtu.edu.cn/EN/Homepage.htm"><sup>a</sup>Southwest Jiaotong University</a>
+          </div>
+          <div class="col-md-4 text-center">
+            <a href="http://geospatial.szu.edu.cn/"><sup>b</sup>Shenzhen University</a>
+          </div>
+          <div class="col-md-4 text-center">
+            <a href="http://www.lmars.whu.edu.cn/index.php?l=en"><sup>c</sup>Wuhan University</a>
+          </div>
+        </div>
+      </div>
+      <!-- Abstract -->
+      <div class="container" id="abstract">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Abstract</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p style="text-align:justify; class="text add-top-margin">
+              Integration of aerial and ground images has been proved as an efficient approach to enhance the surface reconstruction in urban environments. However, as the first step, the feature point matching between aerial and ground images is remarkably difficult, due to the large differences in viewpoint and illumination conditions. Previous studies based on geometry-aware image rectification have alleviated this problem, but the performance and convenience of this strategy are still limited by several flaws, e.g. quadratic image pairs, segregated extraction of descriptors and occlusions. To address these problems, we propose a novel approach: leveraging photogrammetric mesh models for aerial-ground image matching. The methods have linear time complexity with regard to the number of images. It explicitly handles low overlap using multi-view images. The proposed methods can be directly injected into off-the-shelf structure-from-motion (SFM) and multi-view stereo (MVS) solutions. First, aerial and ground images are reconstructed separately and initially co-registered through weak georeferencing data. Second, aerial models are rendered to the initial ground views, in which color, depth and normal images are obtained. Then, feature matching between synthesized and ground images are conducted through descriptor searching and geometry-constrained outlier removal. Finally, oriented 3D patches are formulated using the synthesized depth and normal images and the correspondences are propagated to the aerial views through patch-based matching. Experimental evaluations using five datasets reveal satisfactory performance of the proposed methods in aerial-ground image matching, which succeeds in all of the ten challenging pairs compared to only three for the second best. In addition, incorporation of existing SFM and MVS solutions enables more complete reconstruction results, with better internal stability.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aerial-Ground Match -->
+      <div class="container" id="Match">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Aerial-Ground Match</h2>
+            <hr>
+          </div>
+          <div class="col-md-6 text-center">
+            <p><img src="img/match_dort.png" class="img-fluid">Centre, Dortmund</p>
+          </div>
+		  <div class="col-md-6 text-center">
+            <p><img src="img/match_zeche.png" class="img-fluid">Zeche, Zurich</p>
+          </div>
+		  <div class="col-md-6 text-center">
+            <p><img src="img/match_lib.png" class="img-fluid">Library, SWJTU</p>
+          </div>
+		  <div class="col-md-6 text-center">
+            <p><img src="img/match_bld.png" class="img-fluid">Building, SWJTU</p>
+          </div>
+          <div class="col-md-6 text-center">
+            <p><img src="img/match_res.png" class="img-fluid">Residential, SWJTU</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aerial-Ground Reconstruction -->
+      <div class="container" id="Reconstruction">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Aerial-Ground Reconstruction</h2>
+            <hr>
+          <div class="mx-auto col-md-8 embed-responsive embed-responsive-16by9">
+            <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vOOH5DmVGf8"
+                allowfullscreen></iframe></p>
+          </div>
+          <div class="mx-auto col-md-8 embed-responsive embed-responsive-16by9">
+            <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xUHBeBYgm2g"
+                allowfullscreen></iframe></p>
+          </div>
+          <div class="mx-auto col-md-8 embed-responsive embed-responsive-16by9">
+            <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dDKfunIn780"
+                allowfullscreen></iframe></p>
+          </div>
+          <div class="mx-auto col-md-8 embed-responsive embed-responsive-16by9">
+            <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/34eCBrQTPz4"
+                allowfullscreen></iframe></p>
+          </div>
+		  <div class="mx-auto col-md-8 embed-responsive embed-responsive-16by9">
+            <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/pYWXP1yESsU"
+                allowfullscreen></iframe></p>
+          </div>
+        </div>
+      </div>
+      </div>
+	  
+	  <div class="container" id="datasets">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Datasets</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p>
+               We release all the images, initial AT (Aerial Triangulation) Files and the Tiled 3D models.
+            </p>
+			<ul>
+              <li>Dortmund (3.1 GB): <a href="https://drive.google.com/file/d/1xKHugRam0BDPZwoQMKwJExWzbRQLF9IP/view?usp=sharing" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1b9HbnK5-_J5ei7GleWhiXQ" rel="nofollow">BaiduYun Code: 7n58</a></li>
+			  <li>Zeche (3.2 GB): <a href="" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1pzE06NnOxSqGjm9dnoLqbg" rel="nofollow">BaiduYun Code: ndbb</a></li>
+              <li>SWJTU-BLD (2.7 GB): <a href="https://drive.google.com/open?id=1KUIpckI9sTG_5RlUN64OnUS8Cq1HA3dK" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1eLe8xb4nHwXteaOGbTKqww" rel="nofollow">BaiduYun Code: vgj5</a></li>
+              <li>SWJTU-LIB (2.0 GB): <a href="https://drive.google.com/open?id=1gNDDLmTmdLfO699YUAe0BVkqdlYV3W5-" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1j6GcRz8bC8ZlFipb60Qc6Q" rel="nofollow">BaiduYun Code: aiwa</a></li>
+              <li>SWJTU-RES (2.2 GB): <a href="https://drive.google.com/open?id=1HH7M3qqwNhM-Ohhr8l37apXwYA8IpfkQ" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1dc7gbIdEBBegi8vq_X4ZZA" rel="nofollow">BaiduYun Code: bvje</a></li>
+               </ul>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="container" id="acknowledgements">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Acknowledgements</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p style="text-align:justify;" >
+              The authors gratefully acknowledge the provision of the datasets by ISPRS and EuroSDR, which were released in conjunction with the ISPRS Scientific Initiatives 2014 and 2015, led by ISPRS ICWG I/Vb. In addition, this work was supported by the National Natural Science Foundation of China (Projects No.: 41631174, 41871291, 41871314).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="container" id="links">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Links</h2>
+            <hr>
+          </div>
+          <a href="MeshMatch.pdf" class="col-md-2 my-auto img-fluid text-center"><img src="img/9.png">
+            <div>(preprint)</div>
+          </a>
+          <a href="https://github.com/saedrna/RenderMatch" class="col-md-2 my-auto img-fluid text-center">
+            <i class="fab fa-github fa-8x"></i>
+            <div>Source Code</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
