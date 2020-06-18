@@ -682,7 +682,7 @@
                             <a href="#" class="pubcollapse">
                               <i class="fa fa-expand"></i>
                             </a>
-                            <a href="https://arxiv.org/abs/2002.09085" class="tooltips" title="External link"
+                            <a href="https://doi.org/10.1016/j.isprsjprs.2020.05.024" class="tooltips" title="External link"
                               target="_blank">
                               <i class="fa fa-external-link"></i>
                             </a>
@@ -690,7 +690,7 @@
                               target="_blank">
                               <i class="fa fa-github"></i>
                             </a>
-                            <a href="paper/2020-Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point Matching Toward Integrated 3D Reconstruction.pdf"
+                            <a href="projects/meshmatch/MeshMatch.pdf"
                               class="tooltips" title="Download" target="_blank">
                               <i class="fa fa-cloud-download"></i>
                             </a>
@@ -699,39 +699,35 @@
                             <i class="fa fa-code"></i>
                           </a>
                           </div>
-                          <h4 class="pubtitle"> Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point
+                          <h4 class="pubtitle">Leveraging Photogrammetric Mesh Models for Aerial-Ground Feature Point
                             Matching Toward Integrated 3D Reconstruction
                           </h4>
                           <div class="pubauthor">Qing Zhu, Zhendong Wang, <strong>Han Hu*</strong>, Linfu Xie, Xuming
                             Ge, Yeting Zhang
                           </div>
                           <div class="pubcite">
-                            <span class="label label-success">Journal Paper Preprint</span>submitted to ISPRS Journal of
+                            <span class="label label-success">Journal Paper</span>ISPRS Journal of
                             Photogrammetry and Remote Sensing
                           </div>
                           <div class="pubdetails">
                             <h4>Abstract</h4>
-                            <p>Integration of aerial and ground images has been proved as an efficient approach to
-                              enhance the surface reconstruction in urban environments. However, as the first step, the
-                              feature point matching between aerial and ground images is remarkably difficult, due to
-                              the large differences in viewpoint and illumination conditions. Previous studies based on
-                              geometry-aware image rectification have alleviated this problem, but the performance and
-                              convenience of this strategy is limited by several flaws, e.g. quadratic image pairs,
-                              segregated extraction of descriptors and occlusions. To address these problems, we propose
-                              a novel approach: leveraging photogrammetric mesh models for aerial-ground image matching.
-                              The methods of this proposed approach have linear time complexity with regard to the
-                              number of images, can explicitly handle low overlap using multi-view images and can be
-                              directly injected into off-the-shelf structure-from-motion (SfM) and multi-view stereo
-                              (MVS) solutions. First, aerial and ground images are reconstructed separately and
-                              initially co-registered through weak georeferencing data. Second, aerial models are
-                              rendered to the initial ground views, in which the color, depth and normal images are
-                              obtained. Then, the synthesized color images and the corresponding ground images are
-                              matched by comparing the descriptors, filtered by local geometrical information, and then
-                              propagated to the aerial views using depth images and patch-based matching. Experimental
-                              evaluations using various datasets confirm the superior performance of the proposed
-                              methods in aerial-ground image matching. In addition, incorporation of the existing SfM
-                              and MVS solutions into these methods enables more complete and accurate models to be
-                              directly obtained.</p>
+                            <p>Integration of aerial and ground images has been proved as an efficient approach to enhance the surface
+                              reconstruction in urban environments. However, as the first step, the feature point matching between aerial and
+                              ground images is remarkably difficult, due to the large differences in viewpoint and illumination conditions.
+                              Previous studies based on geometry-aware image rectification have alleviated this problem, but the performance and
+                              convenience of this strategy are still limited by several flaws, e.g. quadratic image pairs, segregated extraction
+                              of descriptors and occlusions. To address these problems, we propose a novel approach: leveraging photogrammetric
+                              mesh models for aerial-ground image matching. The methods have linear time complexity with regard to the number of
+                              images. It explicitly handles low overlap using multi-view images. The proposed methods can be directly injected
+                              into off-the-shelf structure-from-motion (SFM) and multi-view stereo (MVS) solutions. First, aerial and ground
+                              images are reconstructed separately and initially co-registered through weak georeferencing data. Second, aerial
+                              models are rendered to the initial ground views, in which color, depth and normal images are obtained. Then, feature
+                              matching between synthesized and ground images are conducted through descriptor searching and geometry-constrained
+                              outlier removal. Finally, oriented 3D patches are formulated using the synthesized depth and normal images and the
+                              correspondences are propagated to the aerial views through patch-based matching. Experimental evaluations using five
+                              datasets reveal satisfactory performance of the proposed methods in aerial-ground image matching, which succeeds in
+                              all of the ten challenging pairs compared to only three for the second best. In addition, incorporation of existing
+                              SFM and MVS solutions enables more complete reconstruction results, with better internal stability.</p>
                           </div>
                         </div>
                       </div>
