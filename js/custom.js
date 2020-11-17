@@ -183,7 +183,7 @@ $(document).ready(function(){
             align: "center",
             items: {
                 visible: 3,
-                start: 2
+                start: 1
             },
             prev: '#lab_prev',
             next: '#lab_next',
