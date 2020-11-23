@@ -1,0 +1,12 @@
+/*----------------------common-------------------------*/
+* {
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  /*source-sans-pro, sans-serif*/
+}
+
+.fit-image {
+  width: 30%;
+  object-fit: cover;
+  height: 300px;
+  /* only if you want fixed height */
+}

@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Structure-Aware Completion of Photogrammetric Meshes in Urban Road Environment</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <meta name="author" content="Han Hu (胡翰)">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description"
+    content="Structure-Aware Completion of Photogrammetric Meshes in Urban Road Environment" />
+  <meta name="keywords" content="vrlab, Han Hu, Aerial ground" />
+  <link rel="shortcut icon" href="img/icon.jpeg">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="https://www.vrlab.org.cn/~hanhu">Homepage</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#overview">Overview</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#abstract">Abstract</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#Integration">Texture Integration</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#Completion">Mesh Completion</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#code">Code</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#datasets">Datasets</a>
+          </li>
+		   <li class="nav-item active">
+            <a class="nav-link" href="#acknowledgements">Acknowledgements</a>
+          </li>
+		   <li class="nav-item active">
+            <a class="nav-link" href="#links">Links</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <!-- Overview -->
+      <div class="container" id="overview">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1>Structure-Aware Completion of Photogrammetric Meshes in Urban Road Environment</h1>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3"><a href="https://www.vrlab.org.cn/~zhuq" target="_blank">ZHU Qing<sup>a</sup></a></div>
+          <div class="col-md-3">SHANG Qisen<sup>a</sup></div>
+          <div class="col-md-3"><a href="https://www.vrlab.org.cn/~hanhu" target="_blank">HU Han<sup>a,</sup>*</a></div>
+          <div class="col-md-3">YU Haojia<sup>a</sup></div>
+        </div>
+        <div class="row">
+          <div class="col-md text-center">
+            <a href="https://gsee.swjtu.edu.cn/EN/Homepage.htm"><sup>a</sup>Faculty of Geosciences and Environmental Engineering, Southwest Jiaotong University, Chengdu, China</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abstract -->
+      <div class="container" id="abstract">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Abstract</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p style="text-align:justify; class="text add-top-margin">
+              Photogrammetric mesh models obtained from aerial oblique images have been widely used for urban reconstruction.
+              However, the photogrammetric meshes also suffer from severe texture problems, especially on the road areas due to occlusion.
+              This paper proposes a structure-aware completion approach to improve the quality of meshes by removing undesired vehicles on the road seamlessly.
+              Specifically, the discontinuous texture atlas is first integrated to a continuous screen space through rendering by the graphics pipeline; the rendering also records necessary mapping for deintegration to the original texture atlas after editing.
+              Vehicle regions are masked by a standard object detection approach, e.g. Faster RCNN.
+              Then, the masked regions are completed guided by the linear structures and regularities in the road region, which is implemented based on Patch Match.
+              Finally, the completed rendered image is deintegrated to the original texture atlas and the triangles for the vehicles are also flattened for improved meshes.
+              Experimental evaluations and analyses are conducted against three datasets, which are captured with different sensors and ground sample distances.
+              The results reveal that the proposed method can quite realistic meshes after removing the vehicles.
+              The structure-aware completion approach for road regions outperforms popular image completion methods and ablation study further confirms the effectiveness of the linear guidance.
+              It should be noted that the proposed method is also capable to handle tiled mesh models for large-scale scenes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texture Integration -->
+      <div class="container" id="Integration">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Texture Integration</h2>
+            <hr>
+          </div>
+          <div class="col-md-4 text-center">
+            <img src="img/swjtu.jpg" class="img-fluid" alt="SWJTU">
+          </div>
+          <div class="col-md-4 text-center">
+            <img src="img/shenzhen.jpg" class="img-fluid" alt="SWJTU">
+          </div>
+          <div class="col-md-4 text-center">
+            <img src="img/dort.jpg" class="img-fluid" alt="SWJTU">
+          </div>
+        </div>
+      </div>
+
+      <!-- Mesh Completion -->
+      <div class="container" id="Completion">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Mesh Completion</h2>
+            <hr>
+            <img src="img/xp.jpg" class="img-fluid" alt="Xipu">
+            <img src="img/sz.jpg" class="img-fluid" alt="Shenzhen">
+            <img src="img/dt.jpg" class="img-fluid" alt="Dortmund">
+
+            <p>The video demonstrations are also available in <a href="#">Bilibili</a>.</p>
+            <div class="mx-auto col-md-12 embed-responsive embed-responsive-16by9">
+              <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/roUm-VeinFA"
+                  allowfullscreen></iframe></p>
+            </div>
+            <div class="mx-auto col-md-12 embed-responsive embed-responsive-16by9">
+              <p><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/C3GEYRKsQyU"
+                  allowfullscreen></iframe></p>
+            </div>
+        </div>
+      </div>
+      </div>
+	  
+      <div class="container" id="code">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Code</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p>
+              We release a demo for the completion of the integrated texture after vehicle detection. The code is released to <a href="https://github.com/ChisonShang/MeshCompletion">github</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="container" id="datasets">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Datasets</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p>
+               We release the mesh models before & after completion.
+            </p>
+			<ul>
+              <li>Before completion(959MB): <a href="https://drive.google.com/drive/folders/1-HteDPDFMcxruqkO3rs-Yw3sNfS7gJbl?usp=sharing" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1EbGKf4QVveyyKcikgDxKiw" rel="nofollow">BaiduYun Code: fgiq</a></li>
+              <li>After completion(969MB): <a href="https://drive.google.com/drive/folders/1sZ8tQVglT68J1-J2vRI7NVNhM3BziI_v?usp=sharing" rel="nofollow">Google Drive</a>, <a href="https://pan.baidu.com/s/1LtUbGcMcIx1rSPrpLeSdQg" rel="nofollow">BaiduYun Code: 4xbt</a></li>
+               </ul>
+          </div>
+        </div>
+      </div>
+	  
+	  <div class="container" id="acknowledgements">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Acknowledgements</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <p style="text-align:justify;" >
+              This work was supported in part by the National Key Research and Development Program of China (Project No. 2018YFC0825803) and by the National Natural Science Foundation of China (Project No. 41631174, 42071355, 41871291). In addition, the authors gratefully acknowledge the provision of the datasets by ISPRS and EuroSDR, which were released in conjunction with the ISPRS Scientific Initiatives 2014 and 2015, led by ISPRS ICWG I/Vb.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="container" id="links">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Links</h2>
+            <hr>
+          </div>
+
+          <a href="TextureEditing.pdf" class="col-md-2 my-auto img-fluid text-center">
+            <i class="fa fa-file-pdf-o fa-5x" aria-hidden="true"></i>
+            <div>Preprint</div>
+          </a>
+          <a href="#" class="col-md-2 my-auto img-fluid text-center">
+            <i class="fa fa-file-powerpoint-o fa-5x" aria-hidden="true"></i>
+            <div>(Slides: coming soon)</div>
+          </a>
+          <a href="https://github.com/ChisonShang/MeshCompletion" class="col-md-2 my-auto img-fluid text-center">
+            <i class="fa fa-github fa-5x" aria-hidden="true"></i>
+            <div>Code</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="container" id="copyright">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Copyright</h2>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            The code is released based on <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a> and the data is released on <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
