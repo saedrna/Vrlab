@@ -295,7 +295,7 @@ $(document).ready(function(){
     init_gallery();
 
     /**
-     * 研究进展相关内容初始化
+     * 研究进展相关内�?�初始化
      */
     function init_research_progress_pagination() {
         var num_progress_page = $('#hidden-progress div.artical_page').length;
@@ -308,7 +308,7 @@ $(document).ready(function(){
             onPageClick: function (event, page) {
                 var page_index = page - 1;
                 var new_content = $("#hidden-progress div.artical_page:eq(" + page_index + ")").clone();
-                $("#hidden-progress").empty().append(new_content); //װ�ض�Ӧ��ҳ������
+                $("#progress-page").empty().append(new_content); //װ�ض�Ӧ��ҳ������
 
                 $('a.popup-with-move-news').magnificPopup({
                     type: 'ajax',
