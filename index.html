@@ -32,6 +32,19 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        #myCarousel,
+        .carousel-inner {
+            max-width: auto;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .thumb {
             margin-bottom: 30px;
         }
@@ -40,6 +53,17 @@
             display: inline-block;
             vertical-align: middle;
             float: none;
+        }
+
+        .fill {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 4;
+            background-image: url('img/整体框架.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #000;
         }
     </style>
 </head>
@@ -76,8 +100,11 @@
         <!-- /.container -->
     </nav>
 
+
+
+
     <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
+    <header id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -90,41 +117,45 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('img/天际线展示.jpg');"></div>
+                <div class="fill" style="background-image:url('img/整体框架.png');">
+                </div>
                 <div class="carousel-caption">
                     <h2>Geoscope</h2>
-                    <p>天际线展示</p>
+                    <p>整体框架展示</p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/三维场景浏览.jpg');"></div>
+                <div class="fill" style="background-image:url('img/重庆渝北.jpg');">
+                </div>
                 <div class="carousel-caption">
                     <h2>Geoscope</h2>
-                    <p>三维场景浏览</p>
+                    <p>重庆渝北区数字底座</p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/城市规划对比分析.jpg');"></div>
+                <div class="fill" style="background-image:url('img/现代化水库.png');">
+                </div>
                 <div class="carousel-caption">
                     <h2>Geoscope</h2>
-                    <p>城市规划对比分析</p>
+                    <p>现代化水库管理</p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/室内外一体化寻径.jpg');"></div>
+                <div class="fill" style="background-image:url('img/地信小镇.png');">
+                </div>
                 <div class="carousel-caption">
                     <h2>Geoscope</h2>
-                    <p>室内外一体化寻径</p>
+                    <p>地信小镇数字孪生可视化平台</p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/三维可见性分析.jpg');"></div>
+                <div class="fill" style="background-image:url('img/色达.png');">
+                </div>
                 <div class="carousel-caption">
                     <h2>Geoscope</h2>
-                    <p>三维可见性分析</p>
+                    <p>色达三维场景浏览</p>
                 </div>
             </div>
-
         </div>
 
         <!-- Controls -->
